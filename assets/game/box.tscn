@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://dtgfqoehk2e3x"]
+
+[ext_resource type="Texture2D" uid="uid://brvawake4p63x" path="res://assets/sprites/box_blue.png" id="1_oq5cr"]
+[ext_resource type="Script" uid="uid://bt83qhfhxfv2m" path="res://assets/game/box.gd" id="2_bqn3j"]
+[ext_resource type="AudioStream" uid="uid://caatn3l6th33e" path="res://assets/music/laserSmall_004.ogg" id="3_spawn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e8su1"]
+size = Vector2(60, 60)
+
+[node name="Box" type="Area2D" unique_id=5106582 groups=["box"]]
+script = ExtResource("2_bqn3j")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=832907027]
+texture = ExtResource("1_oq5cr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=201110742]
+shape = SubResource("RectangleShape2D_e8su1")
+
+[node name="SpawnSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_spawn")
+bus = &"SFX"
+
+[connection signal="area_shape_entered" from="." to="." method="_on_area_shape_entered"]

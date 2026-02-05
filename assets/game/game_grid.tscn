@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://d3inht7y55iak"]
+
+[ext_resource type="Script" uid="uid://s7igc3l15lbl" path="res://assets/game/game_grid.gd" id="1_414r8"]
+[ext_resource type="Script" uid="uid://dcovd2l8ast6" path="res://assets/data/level_scheduler.gd" id="2_6x170"]
+[ext_resource type="AudioStream" uid="uid://c06eqjg7lg74i" path="res://assets/music/Forgotten Biomes.ogg" id="3_music"]
+
+[node name="GameGrid" type="Node2D" unique_id=501311505]
+script = ExtResource("1_414r8")
+
+[node name="LevelScheduler" type="Node" parent="." unique_id=521208829]
+unique_name_in_owner = true
+script = ExtResource("2_6x170")
+metadata/_custom_type_script = "uid://dcovd2l8ast6"
+
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=330044556]
+unique_name_in_owner = true
+stream = ExtResource("3_music")
+bus = &"Music"

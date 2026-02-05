@@ -1,0 +1,56 @@
+{
+  "level": 7,
+  "description": "Maelstrom",
+  "downtime_limit": 35,
+  "max_boxes_lost": 1,
+  "events": [
+    {
+      "type": "spawn",
+      "spawn_cell": 1,
+      "position": "right",
+      "color": "red",
+      "start_time": 0,
+      "box_count": 8
+    },
+    {
+      "type": "spawn",
+      "spawn_cell": 2,
+      "position": "right",
+      "color": "yellow",
+      "start_time": 0,
+      "box_count": 3
+    },
+    {
+      "type": "spawn",
+      "spawn_cell": 3,
+      "position": "right",
+      "color": "blue",
+      "start_time": 0,
+      "box_count": 2
+    },
+    {
+      "type": "sink",
+      "sink_cell": 5,
+      "position": "left",
+      "color": "red",
+      "start_time": 30,
+      "end_time": 60
+    },
+    {
+      "type": "sink",
+      "sink_cell": 4,
+      "position": "top",
+      "color": "yellow",
+      "start_time": 60,
+      "end_time": 80
+    },
+    {
+      "type": "sink",
+      "sink_cell": 1,
+      "position": "bottom",
+      "color": "blue",
+      "start_time": 80,
+      "end_time": 100
+    }
+  ]
+}

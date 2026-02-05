@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://c75hp557ts0bg"]
+
+[ext_resource type="Texture2D" uid="uid://bx2gqctjjin1c" path="res://assets/sprites/space-key2.png" id="1_lhpwi"]
+[ext_resource type="Texture2D" uid="uid://d4im5i045bbsy" path="res://assets/sprites/wasd.png" id="2_ekeuo"]
+[ext_resource type="Texture2D" uid="uid://bgkykmr1xggdx" path="res://assets/sprites/ijkl.png" id="3_4mhit"]
+
+[node name="ControlDetails" type="VBoxContainer" unique_id=576852742]
+
+[node name="ControlsLabel" type="Label" parent="." unique_id=1384568571]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Controls"
+
+[node name="MarginContainer2" type="MarginContainer" parent="." unique_id=1183563784]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer2" unique_id=1914373477]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 20
+columns = 2
+
+[node name="SpaceImage1" type="TextureRect" parent="MarginContainer2/GridContainer" unique_id=1523528860]
+layout_mode = 2
+texture = ExtResource("1_lhpwi")
+stretch_mode = 3
+
+[node name="Space" type="Label" parent="MarginContainer2/GridContainer" unique_id=1250884992]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Pause/Resume"
+vertical_alignment = 1
+
+[node name="WASDImage" type="TextureRect" parent="MarginContainer2/GridContainer" unique_id=1328798212]
+layout_mode = 2
+texture = ExtResource("2_ekeuo")
+stretch_mode = 5
+
+[node name="WASD" type="Label" parent="MarginContainer2/GridContainer" unique_id=1685498366]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Select cell"
+vertical_alignment = 1
+
+[node name="IJKLImage" type="TextureRect" parent="MarginContainer2/GridContainer" unique_id=1493652755]
+layout_mode = 2
+texture = ExtResource("3_4mhit")
+stretch_mode = 5
+
+[node name="IJKL" type="Label" parent="MarginContainer2/GridContainer" unique_id=1869732386]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Rotate cell"
+vertical_alignment = 1

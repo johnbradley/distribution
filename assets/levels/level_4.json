@@ -1,0 +1,64 @@
+{
+  "level": 4,
+  "description": "Paired Junction",
+  "downtime_limit": 18,
+  "max_boxes_lost": 2,
+  "events": [
+    {
+      "type": "spawn",
+      "spawn_cell": 2,
+      "position": "right",
+      "color": "red",
+      "start_time": 0,
+      "box_count": 5
+    },
+    {
+      "type": "spawn",
+      "spawn_cell": 4,
+      "position": "right",
+      "color": "blue",
+      "start_time": 1,
+      "box_count": 5
+    },
+    {
+      "type": "sink",
+      "sink_cell": 1,
+      "position": "left",
+      "color": "red",
+      "start_time": 0,
+      "end_time": 15
+    },
+    {
+      "type": "sink",
+      "sink_cell": 1,
+      "position": "bottom",
+      "color": "red",
+      "start_time": 15,
+      "end_time": 30
+    },    
+    {
+      "type": "sink",
+      "sink_cell": 3,
+      "position": "left",
+      "color": "yellow",
+      "start_time": 0,
+      "end_time": 5
+    },    
+    {
+      "type": "sink",
+      "sink_cell": 5,
+      "position": "left",
+      "color": "blue",
+      "start_time": 0,
+      "end_time": 15
+    },
+    {
+      "type": "sink",
+      "sink_cell": 1,
+      "position": "top",
+      "color": "blue",
+      "start_time": 15,
+      "end_time": 30
+    },     
+  ]
+}

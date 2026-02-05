@@ -10,21 +10,28 @@ config_version=5
 
 [application]
 
-config/name="BFJ"
-run/main_scene="uid://c1v8lbo2d4rkt"
+config/name="distribution"
+run/main_scene="uid://dya3rcat8v3rr"
 config/features=PackedStringArray("4.6", "Forward Plus")
+boot_splash/bg_color=Color(0, 0.41960785, 0.23529412, 1)
+boot_splash/image="uid://bli44cg0p7pci"
 config/icon="res://icon.svg"
 
 [autoload]
 
 GameManager="*uid://bi3e5f0b8cfcv"
 GridData="*uid://c3denpvutagjb"
+GameConstants="*uid://d3y71x2m6bsil"
 
 [display]
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/stretch/mode="viewport"
+
+[global_group]
+
+box=""
 
 [gui]
 
@@ -80,3 +87,4 @@ turn_down={
 [rendering]
 
 rendering_device/driver.windows="d3d12"
+environment/defaults/default_clear_color=Color(0, 0.41960785, 0.23529412, 1)

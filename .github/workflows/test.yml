@@ -1,0 +1,23 @@
+name: Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    container:
+      image: barichello/godot-ci:4.6
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Import project
+        run: godot --headless -e --quit || true
+        timeout-minutes: 5
+
+      - name: Run GUT tests
+        run: godot --headless -s addons/gut/gut_cmdln.gd -gexit
+        timeout-minutes: 5

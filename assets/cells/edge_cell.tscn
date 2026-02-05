@@ -1,0 +1,10 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" uid="uid://msyx3lo2l6mm" path="res://assets/sprites/sidebox.png" id="1_edge"]
+[ext_resource type="Script" path="res://assets/cells/edge_cell.gd" id="2_edge"]
+[node name="EdgeCell" type="Sprite2D"]
+texture = ExtResource("1_edge")
+offset = Vector2(-32, 0)
+script = ExtResource("2_edge")
+
+[node name="ColorIndicator" type="Sprite2D" parent="."]

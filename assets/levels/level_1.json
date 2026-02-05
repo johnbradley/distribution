@@ -1,0 +1,32 @@
+{
+  "level": 1,
+  "description": "Switching Path",
+  "downtime_limit": 20,
+  "max_boxes_lost": 1,
+  "events": [
+    {
+      "type": "spawn",
+      "spawn_cell": 1,
+      "position": "right",
+      "color": "red",
+      "start_time": 0,
+      "box_count": 5
+    },
+    {
+      "type": "sink",
+      "sink_cell": 1,
+      "position": "left",
+      "color": "red",
+      "start_time": 0,
+      "end_time": 15
+    },
+    {
+      "type": "sink",
+      "sink_cell": 2,
+      "position": "left",
+      "color": "red",
+      "start_time": 15,
+      "end_time": 30
+    }
+  ]
+}

@@ -1,0 +1,105 @@
+[gd_scene format=3 uid="uid://ct8kms8yv8k14"]
+
+[ext_resource type="Script" uid="uid://diqdrgqy2avan" path="res://assets/ui/pause_dialog.gd" id="1_6ijv3"]
+[ext_resource type="StyleBox" path="res://assets/styles/btn_focus.tres" id="btn_focus"]
+[ext_resource type="StyleBox" path="res://assets/styles/btn_hover.tres" id="btn_hover"]
+[ext_resource type="StyleBox" path="res://assets/styles/btn_normal.tres" id="btn_normal"]
+[ext_resource type="StyleBox" path="res://assets/styles/btn_pressed.tres" id="btn_pressed"]
+
+[node name="PauseDialog" type="PanelContainer" unique_id=1412907637]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6ijv3")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=40578621]
+layout_mode = 2
+color = Color(0, 0.41960785, 0.23529412, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1954180134]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer" unique_id=1170288947]
+layout_mode = 2
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer" unique_id=886540336]
+layout_mode = 2
+theme_override_font_sizes/font_size = 90
+text = "Pause Menu"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=566535074]
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="VBoxContainer/HBoxContainer" unique_id=1798393791]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer" unique_id=494244122]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer" unique_id=538366583]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="ResumeButton" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer" unique_id=1322132410]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = ExtResource("btn_normal")
+theme_override_styles/pressed = ExtResource("btn_pressed")
+theme_override_styles/hover = ExtResource("btn_hover")
+theme_override_styles/focus = ExtResource("btn_focus")
+text = "Resume"
+
+[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="RestartButton" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = ExtResource("btn_normal")
+theme_override_styles/pressed = ExtResource("btn_pressed")
+theme_override_styles/hover = ExtResource("btn_hover")
+theme_override_styles/focus = ExtResource("btn_focus")
+text = "Restart"
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer" unique_id=185868305]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="QuitButton" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer2" unique_id=2027189389]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = ExtResource("btn_normal")
+theme_override_styles/pressed = ExtResource("btn_pressed")
+theme_override_styles/hover = ExtResource("btn_hover")
+theme_override_styles/focus = ExtResource("btn_focus")
+text = "Quit"
+
+[node name="Spacer2" type="Control" parent="VBoxContainer/HBoxContainer" unique_id=1956474625]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Spacer" type="Control" parent="VBoxContainer" unique_id=1509846935]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer3/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer2/QuitButton" to="." method="_on_quit_button_pressed"]

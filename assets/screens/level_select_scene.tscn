@@ -1,0 +1,167 @@
+[gd_scene format=3 uid="uid://bac8igh73mn3f"]
+
+[ext_resource type="StyleBox" path="res://assets/styles/btn_disabled.tres" id="btn_disabled"]
+[ext_resource type="StyleBox" path="res://assets/styles/btn_focus.tres" id="btn_focus"]
+[ext_resource type="StyleBox" path="res://assets/styles/btn_hover.tres" id="btn_hover"]
+[ext_resource type="StyleBox" path="res://assets/styles/btn_normal.tres" id="btn_normal"]
+[ext_resource type="StyleBox" path="res://assets/styles/btn_pressed.tres" id="btn_pressed"]
+[ext_resource type="Script" uid="uid://br320f41ndbxs" path="res://assets/screens/level_select_scene.gd" id="script"]
+
+[node name="LevelSelectScene" type="Node2D" unique_id=399268555]
+script = ExtResource("script")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=705464739]
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer" unique_id=1462769249]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/PanelContainer" unique_id=1479212996]
+layout_mode = 2
+theme_override_constants/margin_left = 300
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 300
+theme_override_constants/margin_bottom = 40
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PanelContainer/MarginContainer" unique_id=801980985]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Separator" type="Control" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer" unique_id=842384599]
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+
+[node name="Title" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1701371170]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Select Level"
+horizontal_alignment = 1
+
+[node name="TopSpacer" type="Control" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer" unique_id=95110910]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Level1" type="Button" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer" unique_id=943424029]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = ExtResource("btn_normal")
+theme_override_styles/pressed = ExtResource("btn_pressed")
+theme_override_styles/hover = ExtResource("btn_hover")
+theme_override_styles/disabled = ExtResource("btn_disabled")
+theme_override_styles/focus = ExtResource("btn_focus")
+text = "Level 1"
+alignment = 0
+
+[node name="Level2" type="Button" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer" unique_id=162219594]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = ExtResource("btn_normal")
+theme_override_styles/pressed = ExtResource("btn_pressed")
+theme_override_styles/hover = ExtResource("btn_hover")
+theme_override_styles/disabled = ExtResource("btn_disabled")
+theme_override_styles/focus = ExtResource("btn_focus")
+disabled = true
+text = "Level 2"
+alignment = 0
+
+[node name="Level3" type="Button" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1626430814]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = ExtResource("btn_normal")
+theme_override_styles/pressed = ExtResource("btn_pressed")
+theme_override_styles/hover = ExtResource("btn_hover")
+theme_override_styles/disabled = ExtResource("btn_disabled")
+theme_override_styles/focus = ExtResource("btn_focus")
+disabled = true
+text = "Level 3"
+alignment = 0
+
+[node name="Level4" type="Button" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1996795449]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = ExtResource("btn_normal")
+theme_override_styles/pressed = ExtResource("btn_pressed")
+theme_override_styles/hover = ExtResource("btn_hover")
+theme_override_styles/disabled = ExtResource("btn_disabled")
+theme_override_styles/focus = ExtResource("btn_focus")
+disabled = true
+text = "Level 4"
+alignment = 0
+
+[node name="Level5" type="Button" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1312842895]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = ExtResource("btn_normal")
+theme_override_styles/pressed = ExtResource("btn_pressed")
+theme_override_styles/hover = ExtResource("btn_hover")
+theme_override_styles/disabled = ExtResource("btn_disabled")
+theme_override_styles/focus = ExtResource("btn_focus")
+disabled = true
+text = "Level 5"
+alignment = 0
+
+[node name="Level6" type="Button" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer" unique_id=254049630]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = ExtResource("btn_normal")
+theme_override_styles/pressed = ExtResource("btn_pressed")
+theme_override_styles/hover = ExtResource("btn_hover")
+theme_override_styles/disabled = ExtResource("btn_disabled")
+theme_override_styles/focus = ExtResource("btn_focus")
+disabled = true
+text = "Level 6"
+alignment = 0
+
+[node name="Level7" type="Button" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1620572808]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = ExtResource("btn_normal")
+theme_override_styles/pressed = ExtResource("btn_pressed")
+theme_override_styles/hover = ExtResource("btn_hover")
+theme_override_styles/disabled = ExtResource("btn_disabled")
+theme_override_styles/focus = ExtResource("btn_focus")
+disabled = true
+text = "Level 7"
+alignment = 0
+
+[node name="TopSpacer2" type="Control" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1446988004]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Separator2" type="Control" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1161718836]
+custom_minimum_size = Vector2(0, 6)
+layout_mode = 2
+
+[node name="BackRow" type="HBoxContainer" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer" unique_id=185491310]
+layout_mode = 2
+
+[node name="BackLeftSpacer" type="Control" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/BackRow" unique_id=1853561478]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Back" type="Button" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/BackRow" unique_id=1679594281]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_styles/normal = ExtResource("btn_normal")
+theme_override_styles/pressed = ExtResource("btn_pressed")
+theme_override_styles/hover = ExtResource("btn_hover")
+theme_override_styles/focus = ExtResource("btn_focus")
+text = "Back"
+
+[node name="BackRightSpacer" type="Control" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/BackRow" unique_id=1273766420]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BottomSpacer" type="Control" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1322681583]
+layout_mode = 2
+size_flags_vertical = 3

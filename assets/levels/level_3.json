@@ -1,0 +1,64 @@
+{
+  "level": 3,
+  "description": "Twin Paths",
+  "downtime_limit": 30,
+  "max_boxes_lost": 2,
+  "events": [
+    {
+      "type": "spawn",
+      "spawn_cell": 1,
+      "position": "right",
+      "color": "yellow",
+      "start_time": 0,
+      "box_count": 5
+    },
+    {
+      "type": "spawn",
+      "spawn_cell": 4,
+      "position": "right",
+      "color": "blue",
+      "start_time": 0,
+      "box_count": 5
+    },
+    {
+      "type": "sink",
+      "sink_cell": 1,
+      "position": "top",
+      "color": "yellow",
+      "start_time": 0,
+      "end_time": 15
+    },
+    {
+      "type": "sink",
+      "sink_cell": 4,
+      "position": "top",
+      "color": "yellow",
+      "start_time": 15,
+      "end_time": 30
+    },    
+    {
+      "type": "sink",
+      "sink_cell": 5,
+      "position": "bottom",
+      "color": "blue",
+      "start_time": 0,
+      "end_time": 15
+    },
+    {
+      "type": "sink",
+      "sink_cell": 2,
+      "position": "left",
+      "color": "blue",
+      "start_time": 15,
+      "end_time": 20
+    },
+    {
+      "type": "sink",
+      "sink_cell": 2,
+      "position": "top",
+      "color": "blue",
+      "start_time": 20,
+      "end_time": 40
+    },    
+  ]
+}

@@ -1,0 +1,94 @@
+[gd_scene format=3 uid="uid://c1so2jgusencn"]
+
+[ext_resource type="Script" uid="uid://kbtnmxe5ucq1" path="res://assets/screens/credits_scene.gd" id="1_script"]
+[ext_resource type="FontFile" uid="uid://cvrpmoril3bre" path="res://assets/fonts/ZalandoSans-VariableFont_wdth,wght.ttf" id="2_font"]
+[ext_resource type="StyleBox" uid="uid://da10vlyohc2u7" path="res://assets/styles/btn_focus.tres" id="btn_focus"]
+[ext_resource type="StyleBox" uid="uid://bouvkqd7werkv" path="res://assets/styles/btn_hover.tres" id="btn_hover"]
+[ext_resource type="StyleBox" uid="uid://bera3hxn5o25q" path="res://assets/styles/btn_normal.tres" id="btn_normal"]
+[ext_resource type="StyleBox" uid="uid://ckeerbpanvse6" path="res://assets/styles/btn_pressed.tres" id="btn_pressed"]
+
+[sub_resource type="FontVariation" id="FontVariation_title"]
+base_font = ExtResource("2_font")
+variation_embolden = 1.0
+
+[node name="CreditsScene" type="PanelContainer" unique_id=588054481]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=618347435]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=731596414]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer" unique_id=227093982]
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_title")
+theme_override_font_sizes/font_size = 80
+text = "Credits"
+horizontal_alignment = 1
+
+[node name="Spacer1" type="Control" parent="MarginContainer/VBoxContainer" unique_id=1775108870]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer" unique_id=439354643]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 50
+
+[node name="CreditsText" type="RichTextLabel" parent="MarginContainer/VBoxContainer/MarginContainer" unique_id=2134778626]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "Game Engine: [url=\"https://godotengine.org/\"]GODOT[/url]
+
+Color Palette: [url=\"https://lospec.com/palette-list/cadmium-colors\"]Cadmium Colors Palette by Twarrior99[/url] 
+
+Sound Effects: [url=\"https://kenney.nl/assets/sci-fi-sounds\"]Sci-fi sounds by www.kenney.nl[/url] 
+
+Fonts: [url=https://fonts.google.com/specimen/Zalando+Sans]Zalando Sans[/url], [url=https://fonts.google.com/specimen/Roboto+Mono]Roboto Mono[/url]
+
+Music: [url=\"https://pizzadoggy.itch.io/cozy-tunes\"]COZY TUNES by Pizza Doggy[/url]
+
+Code: [url=\"https://github.com/johnbradley/distribution\"]Github Repo[/url]"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1711061453]
+layout_mode = 2
+
+[node name="Spacer3" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1482951053]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Back" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=952797383]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = ExtResource("btn_normal")
+theme_override_styles/pressed = ExtResource("btn_pressed")
+theme_override_styles/hover = ExtResource("btn_hover")
+theme_override_styles/focus = ExtResource("btn_focus")
+text = "Back"
+
+[node name="Spacer4" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=542379065]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Spacer5" type="Control" parent="MarginContainer/VBoxContainer" unique_id=388920232]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[connection signal="meta_clicked" from="MarginContainer/VBoxContainer/MarginContainer/CreditsText" to="." method="_on_credits_text_meta_clicked"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Back" to="." method="_on_back_pressed"]

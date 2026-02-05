@@ -1,5 +1,24 @@
 [gd_resource type="Theme" format=3 uid="uid://dmytiukfqbrev"]
 
+[ext_resource type="FontFile" uid="uid://cvrpmoril3bre" path="res://assets/fonts/ZalandoSans-VariableFont_wdth,wght.ttf" id="1_touxu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_touxu"]
+bg_color = Color(5.053729e-07, 0.30375844, 0.16443488, 1)
+border_color = Color(0.6666667, 0.6666667, 0.6666667, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2pn01"]
+bg_color = Color(0, 0.41960785, 0.23529412, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
 [resource]
-Button/font_sizes/font_size = 24
-Label/font_sizes/font_size = 30
+Button/font_sizes/font_size = 60
+Button/fonts/font = ExtResource("1_touxu")
+Button/styles/normal = SubResource("StyleBoxFlat_touxu")
+Label/font_sizes/font_size = 60
+Label/fonts/font = ExtResource("1_touxu")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_2pn01")
+RichTextLabel/fonts/bold_font = null
+RichTextLabel/fonts/normal_font = ExtResource("1_touxu")

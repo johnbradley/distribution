@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://bgs7j1b5oei7p"]
+
+[ext_resource type="Script" uid="uid://ddhbfu25ro4r1" path="res://assets/ui/failure_panel.gd" id="1_vsjx5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vsjx5"]
+bg_color = Color(0, 0.41960785, 0.23529412, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.6666667, 0.6666667, 0.6666667, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="FailurePanel" type="PanelContainer" unique_id=1607083796]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -192.0
+offset_top = -156.0
+offset_right = 320.0
+offset_bottom = 228.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vsjx5")
+script = ExtResource("1_vsjx5")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1266885938]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1709822200]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=347330026]
+layout_mode = 2
+size_flags_vertical = 6
+text = "You Failed!"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer" unique_id=2106007731]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer" unique_id=888925888]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Retry"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]

@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://cpoyfsfpsc66c"]
+
+[ext_resource type="AudioStream" uid="uid://xrs2i04xe015" path="res://assets/music/lowFrequency_explosion_001.ogg" id="1_explode"]
+
+[sub_resource type="Gradient" id="Gradient_x06pf"]
+offsets = PackedFloat32Array(0, 0.37295082, 1)
+colors = PackedColorArray(0.7490196, 1, 0, 1, 0.8862745, 0.46673095, 0, 1, 0.9882353, 0.07058824, 0, 0.2509804)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ydm58"]
+gradient = SubResource("Gradient_x06pf")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_x06pf"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 50.0
+initial_velocity_max = 120.0
+angular_velocity_min = 96.76998
+angular_velocity_max = 464.51996
+gravity = Vector3(0, 150, 0)
+scale_max = 12.0
+color_ramp = SubResource("GradientTexture1D_ydm58")
+
+[node name="GPUParticles2D" type="GPUParticles2D" unique_id=1953049343]
+emitting = false
+amount = 50
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_x06pf")
+
+[node name="ExplosionSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_explode")
+autoplay = true
+bus = &"SFX"

@@ -1,0 +1,87 @@
+[gd_scene format=3 uid="uid://c1v8lbo2d4rkt"]
+
+[ext_resource type="PackedScene" uid="uid://ct8kms8yv8k14" path="res://assets/ui/pause_dialog.tscn" id="1_07fqf"]
+[ext_resource type="PackedScene" uid="uid://cxsjp8odrlmul" path="res://assets/ui/status_panel.tscn" id="1_x1kwt"]
+[ext_resource type="PackedScene" uid="uid://d3inht7y55iak" path="res://assets/game/game_grid.tscn" id="1_yot8c"]
+[ext_resource type="PackedScene" uid="uid://c75hp557ts0bg" path="res://assets/ui/control_details.tscn" id="2_jd8xj"]
+[ext_resource type="PackedScene" uid="uid://daav7q5lw5luy" path="res://assets/ui/level_panel.tscn" id="2_ve6l2"]
+[ext_resource type="PackedScene" uid="uid://ddos8l7ywjgcq" path="res://assets/screens/success_scene.tscn" id="3_5t2cw"]
+[ext_resource type="PackedScene" uid="uid://bgs7j1b5oei7p" path="res://assets/ui/failure_panel.tscn" id="4_aufxv"]
+[node name="GameScene" type="Node2D" unique_id=1913712761]
+
+[node name="GameGrid" parent="." unique_id=501311505 instance=ExtResource("1_yot8c")]
+position = Vector2(140, 29)
+
+[node name="CanvasLayer3" type="CanvasLayer" parent="." unique_id=1736779936]
+layer = 0
+
+[node name="LeftGreenPane" type="ColorRect" parent="CanvasLayer3" unique_id=1780104712]
+custom_minimum_size = Vector2(133, 0)
+anchors_preset = 9
+anchor_bottom = 1.0
+grow_vertical = 2
+color = Color(0, 0.41960785, 0.23529412, 1)
+
+[node name="RightGreenPane" type="ColorRect" parent="CanvasLayer3" unique_id=737689930]
+custom_minimum_size = Vector2(750, 0)
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+color = Color(0, 0.41960785, 0.23529412, 1)
+
+[node name="TopGreenPane" type="ColorRect" parent="CanvasLayer3" unique_id=1678317047]
+custom_minimum_size = Vector2(0, 23)
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+color = Color(0, 0.41960785, 0.23529412, 1)
+
+[node name="BottomGreenPane" type="ColorRect" parent="CanvasLayer3" unique_id=1759024012]
+custom_minimum_size = Vector2(0, 21)
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -21.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0, 0.41960785, 0.23529412, 1)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=203489628]
+layer = 2
+
+[node name="LevelPanel" parent="CanvasLayer" unique_id=1026787602 instance=ExtResource("2_ve6l2")]
+
+[node name="ControlDetails" parent="CanvasLayer" unique_id=576852742 instance=ExtResource("2_jd8xj")]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -625.0
+offset_top = -6.0
+offset_right = -32.0
+offset_bottom = 465.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="StatusPanel" parent="CanvasLayer" unique_id=256077909 instance=ExtResource("1_x1kwt")]
+offset_left = 1288.0
+offset_top = 62.0
+offset_right = 1698.0
+offset_bottom = 366.0
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=756835691]
+layer = 3
+
+[node name="Success" parent="CanvasLayer2" unique_id=1193310171 instance=ExtResource("3_5t2cw")]
+visible = false
+
+[node name="PauseDialog" parent="CanvasLayer2" unique_id=2066779500 instance=ExtResource("1_07fqf")]
+visible = false
+
+[node name="FailurePanel" parent="CanvasLayer2" unique_id=1607083796 instance=ExtResource("4_aufxv")]
+visible = false
