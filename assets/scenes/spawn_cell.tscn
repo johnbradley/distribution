@@ -8,4 +8,3 @@ texture = ExtResource("1_w5r1j")
 script = ExtResource("2_10mx3")
 
 [node name="ColorIndicator" type="Sprite2D" parent="." unique_id=1262262971]
-position = Vector2(32, 32)

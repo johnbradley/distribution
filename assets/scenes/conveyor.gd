@@ -1,5 +1,7 @@
 extends Sprite2D
 
+const Direction = GridData.Direction
+
 var location: Vector2i
 var _selection_indicator:Sprite2D
 
@@ -14,11 +16,11 @@ func on_selection_changed(selected_location: Vector2i) -> void:
 func on_conveyor_turned(grid_cell: GridData.GridCell) -> void:
     if grid_cell.location == location:
         match grid_cell.direction:
-            GridData.Direction.UP:
+            Direction.UP:
                 rotation_degrees = 90
-            GridData.Direction.RIGHT:
+            Direction.RIGHT:
                 rotation_degrees = 180
-            GridData.Direction.DOWN:
+            Direction.DOWN:
                 rotation_degrees = 270
-            GridData.Direction.LEFT:
+            Direction.LEFT:
                 rotation_degrees = 0

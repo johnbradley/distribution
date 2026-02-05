@@ -26,18 +26,26 @@ enum Direction {
     RIGHT
 }
 
+enum SinkType {
+    TOP,
+    LEFT,
+    BOTTOM,
+}
+
 class GridCell:
     var location: Vector2i
     var cell_type: CellType
     var direction: Direction
     var position: Vector2
     var cell_color: CellColor
+    var spawn_cnt: int
 
     func _init(l: Vector2i, t: CellType, d: Direction, c: CellColor) -> void:
         location = l
         cell_type = t
         direction = d
         cell_color = c
+        spawn_cnt = 0
         position = Vector2(location[0]*CELL_SIZE, location[1]*CELL_SIZE)
 
 var cells: Dictionary[Vector2i, GridCell]
@@ -53,7 +61,14 @@ signal downtime_remaining_changed(value: float)
 signal selection_changed(selected_location: Vector2i)
 var selected_location: Vector2i = Vector2i(0, 0)
 
+var delivered_boxes: int = 0
+var lost_boxes: int = 0
+var pending_boxes: int = 0
+signal box_counts_changed(delivered: int, lost: int, pending: int)
+
 signal conveyor_turned(grid_cell: GridCell)
+signal spawn_changed(grid_cell: GridCell)
+signal sink_changed(grid_cell: GridCell)
 
 func set_downtime(new_downtime) -> void:
     downtime = new_downtime
@@ -110,9 +125,9 @@ func _set_cell(location: Vector2i, cell_type: CellType) -> void:
             if location[0] == 0:
                 direction = Direction.LEFT
             if location[1] == 0:
-                direction = Direction.DOWN
-            if location[1] == GRID_SIZE -1:
                 direction = Direction.UP
+            if location[1] == GRID_SIZE -1:
+                direction = Direction.DOWN
         CellType.CONVEYOR:
             direction = Direction.LEFT
     cells[location] = GridCell.new(location, cell_type, direction, CellColor.NONE)
@@ -147,3 +162,40 @@ func turn_selected_conveyor(direction: Direction) -> void:
     var grid_cell: GridCell = cells[selected_location]
     grid_cell.direction = direction
     conveyor_turned.emit(grid_cell)
+
+func change_spawn(index: int, cell_color: CellColor, spawn_cnt: int) -> void:
+    var cell:GridCell = cells[Vector2i(GRID_SIZE -1, index+1)]
+    print(cell.cell_type)
+    if cell.cell_type == CellType.SPAWN:
+        cell.cell_color = cell_color
+        cell.spawn_cnt = spawn_cnt
+        spawn_changed.emit(cell)
+
+func change_sink(index: int, sink_type: SinkType, cell_color: CellColor) -> void:
+    var location = Vector2i(0, 0)
+    match sink_type:
+        SinkType.LEFT:
+            location[1] = index + 1
+        SinkType.TOP:
+            location[0] = index + 1
+        SinkType.BOTTOM:
+            location[0] = index + 1
+            location[1] = GRID_SIZE - 1
+    var cell:GridCell = cells[location]
+    if cell.cell_type == CellType.SINK:
+        cell.cell_color = cell_color
+        sink_changed.emit(cell)
+
+func add_pending_box() -> void:
+    pending_boxes += 1
+    box_counts_changed.emit(delivered_boxes, lost_boxes, pending_boxes)
+
+func box_delivered() -> void:
+    delivered_boxes += 1
+    pending_boxes -= 1
+    box_counts_changed.emit(delivered_boxes, lost_boxes, pending_boxes)
+
+func box_lost() -> void:
+    lost_boxes += 1
+    pending_boxes -= 1
+    box_counts_changed.emit(delivered_boxes, lost_boxes, pending_boxes)

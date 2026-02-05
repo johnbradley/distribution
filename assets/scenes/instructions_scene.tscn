@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://ffdvy485po1a"]
+
+[ext_resource type="Script" uid="uid://cb0dtrs2f7vfa" path="res://assets/scenes/instructions_scene.gd" id="1_d4rh4"]
+
+[node name="Control" type="MarginContainer" unique_id=2034653042]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 80
+theme_override_constants/margin_bottom = 80
+script = ExtResource("1_d4rh4")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1825852068]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="VBoxContainer" unique_id=1339528922]
+layout_mode = 2
+theme_override_font_sizes/font_size = 80
+text = "Instructions"
+
+[node name="Details" type="Label" parent="VBoxContainer" unique_id=1094135782]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1991051736]
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="VBoxContainer/HBoxContainer" unique_id=165353768]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=1618110645]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "OK"
+
+[node name="Spacer2" type="Control" parent="VBoxContainer/HBoxContainer" unique_id=1998920346]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Button" to="." method="_on_button_pressed"]

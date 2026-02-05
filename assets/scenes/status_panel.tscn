@@ -2,18 +2,44 @@
 
 [ext_resource type="Script" uid="uid://bmtn8g7xtmsk6" path="res://assets/scenes/status_panel.gd" id="1_orurf"]
 
-[node name="StatusPanel" type="HBoxContainer" unique_id=256077909]
+[node name="StatusPanel" type="GridContainer" unique_id=993052419]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/h_separation = 20
+columns = 2
 script = ExtResource("1_orurf")
 
 [node name="DowntimeLabel" type="Label" parent="." unique_id=177776496]
 layout_mode = 2
-text = "Remaining Downtime:"
+text = "Downtime:"
 
 [node name="Downtime" type="Label" parent="." unique_id=781922515]
 layout_mode = 2
-text = "0.0 s"
+text = "0.0"
+
+[node name="DeliveredLabel" type="Label" parent="." unique_id=277608019]
+layout_mode = 2
+text = "Delivered:"
+
+[node name="Delivered" type="Label" parent="." unique_id=1663392264]
+layout_mode = 2
+text = "0"
+
+[node name="LostLabel" type="Label" parent="." unique_id=1025791668]
+layout_mode = 2
+text = "Lost:"
+
+[node name="Lost" type="Label" parent="." unique_id=1395023701]
+layout_mode = 2
+text = "0"
+
+[node name="PendingLabel" type="Label" parent="." unique_id=2061210288]
+layout_mode = 2
+text = "Pending:"
+
+[node name="Pending" type="Label" parent="." unique_id=2055492723]
+layout_mode = 2
+text = "0"

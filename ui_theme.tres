@@ -1,5 +1,9 @@
 [gd_resource type="Theme" format=3 uid="uid://dmytiukfqbrev"]
 
+[ext_resource type="FontFile" uid="uid://dm475823nxgti" path="res://assets/fonts/CCSuperHuman-Regular.otf" id="2_2pn01"]
+
 [resource]
-Button/font_sizes/font_size = 24
-Label/font_sizes/font_size = 30
+Button/font_sizes/font_size = 60
+Button/fonts/font = ExtResource("2_2pn01")
+Label/font_sizes/font_size = 60
+Label/fonts/font = ExtResource("2_2pn01")

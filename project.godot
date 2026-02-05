@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="BFJ"
-run/main_scene="uid://c1v8lbo2d4rkt"
+run/main_scene="uid://dya3rcat8v3rr"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -19,12 +19,17 @@ config/icon="res://icon.svg"
 
 GameManager="*uid://bi3e5f0b8cfcv"
 GridData="*uid://c3denpvutagjb"
+Scheduler="*uid://bcclcxdt23dqn"
 
 [display]
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/stretch/mode="viewport"
+
+[global_group]
+
+box=""
 
 [gui]
 

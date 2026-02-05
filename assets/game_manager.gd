@@ -12,6 +12,10 @@ signal game_state_changed(game_state: GameState)
 func show_start_scene() -> void:
     get_tree().change_scene_to_file("res://assets/scenes/start_scene.tscn")
 
+func show_instructions_scene() -> void:
+    _game_state = GameState.PLAYING
+    get_tree().change_scene_to_file("res://assets/scenes/instructions_scene.tscn")
+
 func show_game_scene() -> void:
     _game_state = GameState.PLAYING
     get_tree().change_scene_to_file("res://assets/scenes/game_scene.tscn")
@@ -21,6 +25,9 @@ func exit_game() -> void:
 
 func is_game_paused() -> bool:
     return _game_state == GameState.PAUSED
+
+func is_game_playing() -> bool:
+    return _game_state == GameState.PLAYING
 
 func pause_game() -> void:
     _game_state = GameState.PAUSED
