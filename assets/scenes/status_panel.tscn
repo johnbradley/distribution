@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cxsjp8odrlmul"]
+
+[ext_resource type="Script" uid="uid://bmtn8g7xtmsk6" path="res://assets/scenes/status_panel.gd" id="1_orurf"]
+
+[node name="StatusPanel" type="HBoxContainer" unique_id=256077909]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_orurf")
+
+[node name="DowntimeLabel" type="Label" parent="." unique_id=177776496]
+layout_mode = 2
+text = "Remaining Downtime:"
+
+[node name="Downtime" type="Label" parent="." unique_id=781922515]
+layout_mode = 2
+text = "0.0 s"

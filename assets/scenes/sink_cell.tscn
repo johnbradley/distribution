@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://b4ihj682tc3jh"]
+
+[ext_resource type="Texture2D" uid="uid://msyx3lo2l6mm" path="res://assets/sprites/sidebox.png" id="1_vmtic"]
+[ext_resource type="Script" uid="uid://daqf47lcba1lh" path="res://assets/scenes/sink_cell.gd" id="2_cn332"]
+
+[node name="SinkCell" type="Sprite2D" unique_id=408695925]
+texture = ExtResource("1_vmtic")
+script = ExtResource("2_cn332")
+
+[node name="ColorIndicator" type="Sprite2D" parent="." unique_id=1953462002]

@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://c1v8lbo2d4rkt"]
+
+[ext_resource type="PackedScene" uid="uid://ct8kms8yv8k14" path="res://assets/scenes/pause_dialog.tscn" id="1_07fqf"]
+[ext_resource type="PackedScene" uid="uid://cxsjp8odrlmul" path="res://assets/scenes/status_panel.tscn" id="1_x1kwt"]
+[ext_resource type="PackedScene" uid="uid://d3inht7y55iak" path="res://assets/scenes/game_grid.tscn" id="1_yot8c"]
+
+[node name="GameScene" type="Node2D" unique_id=1913712761]
+
+[node name="StatusPanel" parent="." unique_id=256077909 instance=ExtResource("1_x1kwt")]
+offset_left = 1466.0
+offset_top = 89.0
+offset_right = 1855.0
+offset_bottom = 131.0
+
+[node name="GameGrid" parent="." unique_id=501311505 instance=ExtResource("1_yot8c")]
+position = Vector2(480, 73)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=203489628]
+
+[node name="PauseDialog" parent="CanvasLayer" unique_id=2066779500 instance=ExtResource("1_07fqf")]

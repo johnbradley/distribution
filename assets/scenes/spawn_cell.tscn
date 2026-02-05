@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://qrx24isl2il5"]
+
+[ext_resource type="Texture2D" uid="uid://ct5gvyphd81qp" path="res://assets/sprites/sidebox_spawn.png" id="1_w5r1j"]
+[ext_resource type="Script" uid="uid://xfmmhslw6bf0" path="res://assets/scenes/spawn_cell.gd" id="2_10mx3"]
+
+[node name="SpawnCell" type="Sprite2D" unique_id=933144576]
+texture = ExtResource("1_w5r1j")
+script = ExtResource("2_10mx3")
+
+[node name="ColorIndicator" type="Sprite2D" parent="." unique_id=1262262971]
+position = Vector2(32, 32)
