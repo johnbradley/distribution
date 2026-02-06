@@ -39,6 +39,7 @@ class GridCell:
     var position: Vector2
     var cell_color: CellColor
     var spawn_cnt: int
+    var lifespan: float
 
     func _init(l: Vector2i, t: CellType, d: Direction, c: CellColor) -> void:
         location = l
@@ -46,6 +47,7 @@ class GridCell:
         direction = d
         cell_color = c
         spawn_cnt = 0
+        lifespan = 0.0
         position = Vector2(location[0]*CELL_SIZE, location[1]*CELL_SIZE)
 
 var cells: Dictionary[Vector2i, GridCell]
@@ -79,6 +81,7 @@ func set_downtime(new_downtime) -> void:
         # Set to corner (a non-spawn location)
         set_selected_location(Vector2i(0, 0))
     downtime_changed.emit(downtime)
+    GameManager.game_clock_state_changed.emit(not downtime)
 
 func reset_remaining_downtime(value: float):
     downtime_remaining = value
@@ -165,13 +168,12 @@ func turn_selected_conveyor(direction: Direction) -> void:
 
 func change_spawn(index: int, cell_color: CellColor, spawn_cnt: int) -> void:
     var cell:GridCell = cells[Vector2i(GRID_SIZE -1, index+1)]
-    print(cell.cell_type)
     if cell.cell_type == CellType.SPAWN:
         cell.cell_color = cell_color
         cell.spawn_cnt = spawn_cnt
         spawn_changed.emit(cell)
 
-func change_sink(index: int, sink_type: SinkType, cell_color: CellColor) -> void:
+func change_sink(index: int, sink_type: SinkType, cell_color: CellColor, lifespan: float) -> void:
     var location = Vector2i(0, 0)
     match sink_type:
         SinkType.LEFT:
@@ -184,7 +186,14 @@ func change_sink(index: int, sink_type: SinkType, cell_color: CellColor) -> void
     var cell:GridCell = cells[location]
     if cell.cell_type == CellType.SINK:
         cell.cell_color = cell_color
+        cell.lifespan = lifespan
         sink_changed.emit(cell)
+
+func reset_sink(location: Vector2i) -> void:
+    print("In reeset", location)
+    var cell: GridCell = cells[location]
+    cell.cell_color = CellColor.NONE
+    sink_changed.emit(cell)
 
 func add_pending_box() -> void:
     pending_boxes += 1

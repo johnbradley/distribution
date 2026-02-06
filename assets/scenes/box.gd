@@ -6,7 +6,7 @@ const Direction = GridData.Direction
 
 const WAIT_BEFORE_FIRST_MOVE: float = 1.0
 const WAIT_BETWEEN_MOVES: float = 1.0
-const MOVE_TIME_MULTIPLIER: float = 0.8
+const MOVE_TIME_MULTIPLIER: float = 1.8
 const STARTING_TIME_JUMP = 0.1 # Makes first movement faster
 const BOX_BLUE_TEXTURE: Texture2D = preload("res://assets/sprites/box_blue.png")
 const BOX_RED_TEXTURE: Texture2D = preload("res://assets/sprites/box_red.png")
@@ -23,14 +23,23 @@ var t: float = 0.0
 var moving: bool = false
 var close_enough_squared_amt = 100 # 10^2
 var sprite: Sprite2D
+var tween
 
 func _ready() -> void:
-    var tween = Scheduler.add_new_tween()
+    GameManager.game_clock_state_changed.connect(game_clock_state_changed)
+    tween = get_tree().create_tween()
     tween.tween_interval(WAIT_BEFORE_FIRST_MOVE)
     tween.tween_callback(start_move) 
     sprite = $Sprite
     sprite.texture = get_box_texture()
     GridData.add_pending_box()
+
+func game_clock_state_changed(running):
+    if tween:
+        if running:
+            tween.play()
+        else:
+            tween.pause()
 
 func get_box_texture() -> Texture2D:
     match box_color:
@@ -114,6 +123,6 @@ func move_to_next_target(current_cell: GridData.GridCell) -> void:
         Direction.RIGHT:
             target_location[0] += 1
     target_position = GridData.get_position_from_location(target_location)
-    var tween = Scheduler.add_new_tween()
+    tween = get_tree().create_tween()
     tween.tween_interval(WAIT_BETWEEN_MOVES)
-    tween.tween_callback(start_move)    
+    tween.tween_callback(start_move)

@@ -15,10 +15,10 @@ func _ready() -> void:
     _add_cell_sprites()
 
     GridData.change_spawn(1, CellColor.BLUE, 8)
-    GridData.change_sink(1, SinkType.LEFT, CellColor.BLUE)
+    GridData.change_sink(1, SinkType.LEFT, CellColor.BLUE, 30)
 
     GridData.change_spawn(4, CellColor.RED, 6)
-    GridData.change_sink(4, SinkType.LEFT, CellColor.RED)
+    GridData.change_sink(4, SinkType.LEFT, CellColor.RED, 30)
 
 
 func _add_cell_sprites() -> void:

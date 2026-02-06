@@ -16,11 +16,20 @@ var location: Vector2i
 var spawn_color: CellColor
 var spawn_cnt = 0
 var spawn_direction: Direction
+var tween: Tween
 
 @onready var color_indicator:Sprite2D = $ColorIndicator
 
 func _ready() -> void:
     GridData.spawn_changed.connect(on_change_spawn)
+    GameManager.game_clock_state_changed.connect(game_clock_state_changed)
+
+func game_clock_state_changed(running):
+    if tween:
+        if running:
+            tween.play()
+        else:
+            tween.pause()
 
 func on_change_spawn(cell: GridData.GridCell):
     if cell.location == location:
@@ -28,12 +37,12 @@ func on_change_spawn(cell: GridData.GridCell):
         spawn_color = cell.cell_color
         spawn_direction = cell.direction
         run_spawning_process()
-        
+
 func run_spawning_process() -> void:
     # Show spawning indicator immediately
     color_indicator.texture = get_arrow_texture()
     # Wait a bit and spawn the first box
-    var tween = Scheduler.add_new_tween()
+    tween = get_tree().create_tween()
     tween.tween_interval(FIRST_SPAWN_WAIT)
     tween.tween_callback(spawn_box)
 
@@ -48,11 +57,11 @@ func spawn_box() -> void:
 
     spawn_cnt -= 1
     if spawn_cnt:
-        var tween = Scheduler.add_new_tween()
+        tween = get_tree().create_tween()
         tween.tween_interval(SUBSEQUENT_SPAWN_WAIT)
         tween.tween_callback(spawn_box)
     else:
-        var tween = Scheduler.add_new_tween()
+        tween = get_tree().create_tween()
         tween.tween_interval(CLEANUP_WAIT)
         tween.tween_callback(reset_spawner)
 
