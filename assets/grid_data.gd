@@ -1,3 +1,4 @@
+@tool
 extends Node
 
 const CellType = GridCell.CellType
@@ -10,7 +11,6 @@ var cells: Dictionary[Vector2i, GridCell]
 var downtime: bool = false
 signal downtime_changed(value: bool)
 
-const DOWNTIME_UPDATE_INCREMENT: float = 0.2
 var downtime_remaining: float = 0.0
 var downtime_accumulator: float = 0.0
 signal downtime_remaining_changed(value: float)
@@ -21,11 +21,22 @@ var selected_location: Vector2i = Vector2i(0, 0)
 var delivered_boxes: int = 0
 var lost_boxes: int = 0
 var pending_boxes: int = 0
-signal box_counts_changed(delivered: int, lost: int, pending: int)
+var total_boxes: int = 0
+signal box_counts_changed(delivered: int, lost: int, pending: int, total_boxes: int)
 
 signal conveyor_turned(grid_cell: GridCell)
 signal spawn_changed(grid_cell: GridCell)
 signal sink_changed(grid_cell: GridCell)
+
+func _ready() -> void:
+    GameManager.game_state_changed.connect(_on_game_state_changed)
+
+func _on_game_state_changed(game_state: GameManager.GameState) -> void:
+    if game_state == GameManager.GameState.WIN or game_state == GameManager.GameState.LOST:
+        downtime = false
+        if downtime_remaining < 0.0:
+            downtime_remaining = 0.0
+            downtime_remaining_changed.emit(0.0)
 
 func set_downtime(new_downtime) -> void:
     downtime = new_downtime
@@ -49,10 +60,12 @@ func try_update_downtime(delta: float) -> void:
 
 func reduce_remaining_downtime(delta: float) -> void:
     downtime_accumulator += delta
-    if downtime_accumulator > DOWNTIME_UPDATE_INCREMENT:
+    if downtime_accumulator > GameConstants.DOWNTIME_UPDATE_INCREMENT:
         downtime_remaining -= downtime_accumulator
         downtime_accumulator = 0
         downtime_remaining_changed.emit(downtime_remaining)
+        if downtime_remaining <= 0.0:
+            GameManager.game_lost()
 
 func set_selected_location(location:Vector2i):
     selected_location = location
@@ -65,6 +78,9 @@ func increment_selected_location(offset: Vector2i):
 func reset() -> void:
     reset_cells()
     reset_remaining_downtime(GameConstants.DOWNTIME_SECONDS)
+    delivered_boxes = 0
+    lost_boxes = 0
+    pending_boxes = 0    
 
 func reset_cells() -> void:
     cells.clear()
@@ -103,7 +119,9 @@ func get_cell_type(location: Vector2i) -> CellType:
     return CellType.CONVEYOR
 
 func get_position_from_location(location: Vector2i) -> Vector2:
-    return Vector2(location[0]*GameConstants.CELL_SIZE, location[1]*GameConstants.CELL_SIZE)
+    return Vector2(
+        location[0]*GameConstants.CELL_SIZE + GameConstants.CELL_OFFSET,
+        location[1]*GameConstants.CELL_SIZE + GameConstants.CELL_OFFSET)
 
 func move_selection(x_offset, y_offset) -> void:
     var target_location: Vector2i = selected_location
@@ -145,21 +163,45 @@ func change_sink(index: int, sink_type: SinkType, cell_color: CellColor, lifespa
         sink_changed.emit(cell)
 
 func reset_sink(location: Vector2i) -> void:
-    print("In reeset", location)
     var cell: GridCell = cells[location]
     cell.cell_color = CellColor.NONE
     sink_changed.emit(cell)
 
 func add_pending_box() -> void:
     pending_boxes += 1
-    box_counts_changed.emit(delivered_boxes, lost_boxes, pending_boxes)
+    box_counts_changed.emit(delivered_boxes, lost_boxes, pending_boxes, total_boxes)
+    check_for_game_over()
 
 func box_delivered() -> void:
     delivered_boxes += 1
     pending_boxes -= 1
-    box_counts_changed.emit(delivered_boxes, lost_boxes, pending_boxes)
+    box_counts_changed.emit(delivered_boxes, lost_boxes, pending_boxes, total_boxes)
+    check_for_game_over()
 
 func box_lost() -> void:
     lost_boxes += 1
     pending_boxes -= 1
-    box_counts_changed.emit(delivered_boxes, lost_boxes, pending_boxes)
+    box_counts_changed.emit(delivered_boxes, lost_boxes, pending_boxes, total_boxes)
+    check_for_game_over()
+
+func set_total_boxes(total) -> void:
+    total_boxes = total
+    box_counts_changed.emit(delivered_boxes, lost_boxes, pending_boxes, total_boxes)
+
+func reset_spawner(location: Vector2i) -> void:
+    cells[location].spawn_cnt = 0
+
+func has_active_spawners() -> bool:
+    for cell in cells.values():
+        if cell.cell_type == CellType.SPAWN and cell.spawn_cnt > 0:
+            return true
+    return false
+
+func check_for_game_over() -> void:
+    # if there are more than 2 lost boxes show failure scene
+    # if there are no spawners and pending_boxes = 0 the game is over
+    # otherwise show sucess scene
+    if lost_boxes > 2:
+        GameManager.game_lost()
+    elif not has_active_spawners() and pending_boxes == 0:
+        GameManager.game_won()

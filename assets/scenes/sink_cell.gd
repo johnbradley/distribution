@@ -30,15 +30,7 @@ func on_sink_changed(cell: GridCell) -> void:
                 schedule_reset = true
             CellColor.NONE:
                 color_indicator.texture = null
-        match cell.direction:
-            Direction.UP:
-                color_indicator.rotation_degrees = 90
-            Direction.RIGHT:
-                color_indicator.rotation_degrees = 180
-            Direction.DOWN:
-                color_indicator.rotation_degrees = 270
-            Direction.LEFT:
-                color_indicator.rotation_degrees = 0
+        #_degrees = cell.get_rotation_degrees()
         if schedule_reset:
             tween = get_tree().create_tween()
             tween.tween_interval(cell.lifespan)

@@ -1,3 +1,4 @@
+@tool
 extends Node2D
 
 const CellColor = GridData.CellColor
@@ -9,16 +10,26 @@ const CORNER_CELL_SCENE: PackedScene = preload("res://assets/scenes/corner_cell.
 const SPAWN_CELL_SCENE: PackedScene = preload("res://assets/scenes/spawn_cell.tscn")
 const SINK_CELL_SCENE: PackedScene = preload("res://assets/scenes/sink_cell.tscn")
 const CONVEYOR_CELL_SCENE: PackedScene = preload("res://assets/scenes/conveyor_cell.tscn")
+@onready var level_cron: LevelCron = %LevelCron
+
+var background_rect : Rect2
+const background_color: Color = Color.BLACK
+const background_border_width1: float = 12.0
+const background_border_width2: float = 4.0
+const background_border_color1: Color = Color("#555555")
+const background_border_color2: Color = Color("#777777")
 
 func _ready() -> void:
+    # Setup for rendering black background
+    const pixel_dimension = GameConstants.GRID_SIZE * GameConstants.CELL_SIZE + GameConstants.CELL_OFFSET
+    background_rect = Rect2(0, 0, pixel_dimension, pixel_dimension)
+
     GridData.reset()
-    _add_cell_sprites()
+    _add_cell_sprites()    
 
-    GridData.change_spawn(1, CellColor.BLUE, 8)
-    GridData.change_sink(1, SinkType.LEFT, CellColor.BLUE, 30)
-
-    GridData.change_spawn(4, CellColor.RED, 6)
-    GridData.change_sink(4, SinkType.LEFT, CellColor.RED, 30)
+    var level_exists = level_cron.play_level(GameManager.current_level)
+    if not level_exists:
+        print("At the end")
 
 
 func _add_cell_sprites() -> void:
@@ -31,11 +42,18 @@ func _add_cell_sprites() -> void:
                 child = SPAWN_CELL_SCENE.instantiate()
             CellType.SINK:
                 child = SINK_CELL_SCENE.instantiate()
+                child.rotation_degrees = cell.get_rotation_degrees()
             CellType.CONVEYOR:
                 child = CONVEYOR_CELL_SCENE.instantiate()
         child.position = cell.position
         child.location = cell.location
         add_child(child)
+
+func _draw():
+    draw_rect(background_rect, background_color)
+    draw_rect(background_rect, background_border_color1, false, background_border_width1)
+    draw_rect(background_rect, background_border_color2, false, background_border_width2) 
+
 
 func _process(delta):
     GridData.try_update_downtime(delta)
@@ -62,4 +80,3 @@ func _input(event: InputEvent) -> void:
                 GridData.turn_selected_conveyor(Direction.UP)
             if event.is_action_pressed("turn_down"):
                 GridData.turn_selected_conveyor(Direction.DOWN)
-

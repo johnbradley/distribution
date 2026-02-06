@@ -5,6 +5,7 @@
 
 [node name="SinkCell" type="Sprite2D" unique_id=408695925]
 texture = ExtResource("1_vmtic")
+offset = Vector2(-32, 0)
 script = ExtResource("2_cn332")
 
 [node name="ColorIndicator" type="Sprite2D" parent="." unique_id=1953462002]

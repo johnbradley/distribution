@@ -3,9 +3,6 @@ extends Sprite2D
 const CellColor = GridCell.CellColor
 const Direction = GridCell.Direction
 
-const FIRST_SPAWN_WAIT: float = 1.0
-const SUBSEQUENT_SPAWN_WAIT: float = 4.0 # 4.0 right now gets every other conveyor cell
-const CLEANUP_WAIT: float = 2.0
 const ARROW_BLUE_TEXTURE: Texture2D = preload("res://assets/sprites/arrow_blue.png")
 const ARROW_RED_TEXTURE: Texture2D = preload("res://assets/sprites/arrow_red.png")
 const ARROW_YELLOW_TEXTURE: Texture2D = preload("res://assets/sprites/arrow_yellow.png")
@@ -43,7 +40,7 @@ func run_spawning_process() -> void:
     color_indicator.texture = get_arrow_texture()
     # Wait a bit and spawn the first box
     tween = get_tree().create_tween()
-    tween.tween_interval(FIRST_SPAWN_WAIT)
+    tween.tween_interval(GameConstants.FIRST_SPAWN_WAIT)
     tween.tween_callback(spawn_box)
 
 func spawn_box() -> void:
@@ -52,20 +49,23 @@ func spawn_box() -> void:
     var target_location = location
     target_location[0] -= 1
     child.target_location = target_location
-    child.position = position
+    var box_location = location
+    box_location[0] += 2
+    child.position = GridData.get_position_from_location(box_location)
     get_parent().add_child(child)
 
     spawn_cnt -= 1
     if spawn_cnt:
         tween = get_tree().create_tween()
-        tween.tween_interval(SUBSEQUENT_SPAWN_WAIT)
+        tween.tween_interval(GameConstants.SUBSEQUENT_SPAWN_WAIT)
         tween.tween_callback(spawn_box)
     else:
         tween = get_tree().create_tween()
-        tween.tween_interval(CLEANUP_WAIT)
+        tween.tween_interval(GameConstants.CLEANUP_WAIT)
         tween.tween_callback(reset_spawner)
 
 func reset_spawner() -> void:
+    GridData.reset_spawner(location)
     color_indicator.texture = null
 
 func get_arrow_texture() -> Texture2D:

@@ -3,8 +3,11 @@ extends Node
 enum GameState {
     PLAYING,
     PAUSED,
-    GAME_OVER
+    WIN,
+    LOST
 }
+
+var current_level: int = 1
 
 var _game_state: GameState = GameState.PLAYING
 signal game_state_changed(game_state: GameState)
@@ -32,17 +35,21 @@ func is_game_playing() -> bool:
     return _game_state == GameState.PLAYING
 
 func pause_game() -> void:
-    _game_state = GameState.PAUSED
-    game_state_changed.emit(_game_state)
-    game_clock_state_changed.emit(false)
+    if _game_state == GameState.PLAYING:
+        _game_state = GameState.PAUSED
+        game_state_changed.emit(_game_state)
+        game_clock_state_changed.emit(false)
 
 func resume_game() -> void:
     _game_state = GameState.PLAYING
     game_state_changed.emit(_game_state)
     game_clock_state_changed.emit(true)
 
-func set_game_over() -> void:
-    _game_state = GameState.GAME_OVER
+func game_won() -> void:
+    _game_state = GameState.WIN
+    current_level += 1
     game_state_changed.emit(_game_state)
 
-
+func game_lost() -> void:
+    _game_state = GameState.LOST
+    game_state_changed.emit(_game_state)

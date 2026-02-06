@@ -1,68 +1,64 @@
 [gd_scene format=3 uid="uid://dya3rcat8v3rr"]
 
 [ext_resource type="Script" uid="uid://ogp04c0q1ny2" path="res://assets/scenes/start_scene.gd" id="1_sntry"]
-[ext_resource type="FontFile" uid="uid://d21s15xvwqahx" path="res://assets/fonts/HelpMe.ttf" id="2_4m8pq"]
 
 [node name="StartScene" type="Node2D" unique_id=1523391321]
 script = ExtResource("1_sntry")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=357264217]
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer" unique_id=463953963]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -351.0
-offset_top = -202.0
-offset_right = 532.0
-offset_bottom = 119.0
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer" unique_id=852102086]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/HBoxContainer" unique_id=1830581144]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/PanelContainer" unique_id=463953963]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PanelContainer/HBoxContainer" unique_id=1830581144]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 20
 
-[node name="Label" type="Label" parent="CanvasLayer/HBoxContainer/VBoxContainer" unique_id=1665066205]
+[node name="Spacer" type="Control" parent="CanvasLayer/PanelContainer/HBoxContainer/VBoxContainer" unique_id=1078281430]
 layout_mode = 2
-theme_override_font_sizes/font_size = 90
-text = "Factory Job"
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/HBoxContainer/VBoxContainer" unique_id=1665066205]
+layout_mode = 2
+theme_override_font_sizes/font_size = 120
+text = "Distribution"
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/HBoxContainer/VBoxContainer" unique_id=1354233715]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/PanelContainer/HBoxContainer/VBoxContainer" unique_id=1354233715]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="Control" type="Control" parent="CanvasLayer/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=203229514]
+[node name="Control" type="Control" parent="CanvasLayer/PanelContainer/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=203229514]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Start" type="Button" parent="CanvasLayer/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=112003935]
+[node name="Start" type="Button" parent="CanvasLayer/PanelContainer/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=112003935]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Start"
 
-[node name="Exit" type="Button" parent="CanvasLayer/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=321877885]
+[node name="Exit" type="Button" parent="CanvasLayer/PanelContainer/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=321877885]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Exit"
 
-[node name="Control2" type="Control" parent="CanvasLayer/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=1801000086]
+[node name="Control2" type="Control" parent="CanvasLayer/PanelContainer/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=1801000086]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="CanvasLayer" unique_id=1844823225]
-offset_left = 735.0
-offset_top = 277.00003
-offset_right = 918.0
-offset_bottom = 381.00003
-rotation = -0.39618975
-theme_override_fonts/font = ExtResource("2_4m8pq")
-theme_override_font_sizes/font_size = 90
-text = "Bad"
+[node name="Spacer2" type="Control" parent="CanvasLayer/PanelContainer/HBoxContainer/VBoxContainer" unique_id=1909867991]
+layout_mode = 2
+size_flags_vertical = 3
 
-[connection signal="pressed" from="CanvasLayer/HBoxContainer/VBoxContainer/HBoxContainer/Start" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="CanvasLayer/HBoxContainer/VBoxContainer/HBoxContainer/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="CanvasLayer/PanelContainer/HBoxContainer/VBoxContainer/HBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="CanvasLayer/PanelContainer/HBoxContainer/VBoxContainer/HBoxContainer/Exit" to="." method="_on_exit_pressed"]

@@ -15,12 +15,4 @@ func on_selection_changed(selected_location: Vector2i) -> void:
 
 func on_conveyor_turned(grid_cell: GridCell) -> void:
     if grid_cell.location == location:
-        match grid_cell.direction:
-            Direction.UP:
-                rotation_degrees = 90
-            Direction.RIGHT:
-                rotation_degrees = 180
-            Direction.DOWN:
-                rotation_degrees = 270
-            Direction.LEFT:
-                rotation_degrees = 0
+        rotation_degrees = grid_cell.get_rotation_degrees()

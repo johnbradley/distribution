@@ -46,9 +46,14 @@ func _init(l: Vector2i, t: CellType, d: Direction, c: CellColor) -> void:
     cell_color = c
     spawn_cnt = 0
     lifespan = 0.0
-    position = location_to_position(location)
+    position = GridData.get_position_from_location(location)
 
-func location_to_position(loc: Vector2i) -> Vector2:
-    var x_pos = loc[0]*GameConstants.CELL_SIZE
-    var y_pos = loc[1]*GameConstants.CELL_SIZE
-    return Vector2(x_pos, y_pos)
+func get_rotation_degrees() -> int:
+    match direction:
+        Direction.UP:
+            return 90
+        Direction.RIGHT:
+            return 180
+        Direction.DOWN:
+            return 270
+    return 0

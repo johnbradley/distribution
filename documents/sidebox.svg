@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="128"
+   width="192"
    height="128"
-   viewBox="0 0 33.866666 33.866666"
+   viewBox="0 0 50.799999 33.866666"
    version="1.1"
    id="svg1"
    inkscape:version="1.4 (e7c3feb1, 2024-10-09)"
@@ -27,15 +27,15 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="px"
      showgrid="true"
-     inkscape:zoom="5.9295174"
-     inkscape:cx="97.562746"
-     inkscape:cy="63.074273"
+     inkscape:zoom="4.192802"
+     inkscape:cx="56.048437"
+     inkscape:cy="71.789701"
      inkscape:window-width="1680"
      inkscape:window-height="927"
      inkscape:window-x="0"
      inkscape:window-y="38"
      inkscape:window-maximized="0"
-     inkscape:current-layer="layer1">
+     inkscape:current-layer="layer2">
     <inkscape:grid
        id="grid1"
        units="px"
@@ -52,17 +52,46 @@
        visible="true" />
   </sodipodi:namedview>
   <defs
-     id="defs1" />
+     id="defs1">
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath3">
+      <rect
+         style="fill:#aaaaaa;stroke:#838383;stroke-width:0.79375;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+         id="rect4"
+         width="32.624859"
+         height="40.32357"
+         x="3.4076257"
+         y="-2.5241671"
+         transform="scale(-1,1)" />
+    </clipPath>
+  </defs>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="Layer 2"
+     style="fill:#aaaaaa;fill-opacity:1;stroke:#838383;stroke-opacity:1;stroke-width:0.26458333;stroke-dasharray:none">
+    <rect
+       style="fill:#aaaaaa;fill-opacity:1;stroke:#838383;stroke-width:0.79375;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       id="rect2"
+       width="24.159748"
+       height="23.478643"
+       x="-20.416254"
+       y="5.1940112"
+       transform="matrix(-1,0,0,1,-2.1166667,0)"
+       clip-path="url(#clipPath3)" />
+  </g>
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1">
     <rect
-       style="opacity:1;fill:#a3a3a3;stroke:#000000;stroke-width:1.96166;stroke-linecap:round;stroke-linejoin:round;fill-opacity:1;stroke-opacity:1"
+       style="opacity:1;fill:#053b6b;fill-opacity:1;stroke:#053b6b;stroke-width:1.96166;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
        id="rect1"
        width="31.163641"
        height="31.119019"
-       x="1.3037457"
-       y="1.3037457" />
+       x="-49.392426"
+       y="1.3037457"
+       transform="scale(-1,1)" />
   </g>
 </svg>

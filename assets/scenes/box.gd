@@ -4,13 +4,10 @@ const CellColor = GridCell.CellColor
 const CellType = GridCell.CellType
 const Direction = GridCell.Direction
 
-const WAIT_BEFORE_FIRST_MOVE: float = 1.0
-const WAIT_BETWEEN_MOVES: float = 1.0
-const MOVE_TIME_MULTIPLIER: float = 1.8
-const STARTING_TIME_JUMP = 0.1 # Makes first movement faster
 const BOX_BLUE_TEXTURE: Texture2D = preload("res://assets/sprites/box_blue.png")
 const BOX_RED_TEXTURE: Texture2D = preload("res://assets/sprites/box_red.png")
 const BOX_YELLOW_TEXTURE: Texture2D = preload("res://assets/sprites/box_yellow.png")
+const EXPLOSION_SCENE = preload("res://assets/scenes/explosion_particles.tscn")
 
 # value that should be set when creating this cell
 # Specifies GridData cell location for our first stop
@@ -21,15 +18,15 @@ var original_position: Vector2
 var target_position: Vector2
 var t: float = 0.0
 var moving: bool = false
-var close_enough_squared_amt = 100 # 10^2
 var sprite: Sprite2D
 var tween
 var alive: bool = true
 
 func _ready() -> void:
     GameManager.game_clock_state_changed.connect(game_clock_state_changed)
+    target_position = GridData.get_position_from_location(target_location)
     tween = get_tree().create_tween()
-    tween.tween_interval(WAIT_BEFORE_FIRST_MOVE)
+    tween.tween_interval(GameConstants.WAIT_BEFORE_FIRST_MOVE)
     tween.tween_callback(start_move) 
     sprite = $Sprite
     sprite.texture = get_box_texture()
@@ -54,7 +51,7 @@ func get_box_texture() -> Texture2D:
 
 func start_move() -> void:
     original_position = position
-    target_position = GridData.get_position_from_location(target_location)    
+    # target_position = GridData.get_position_from_location(target_location)
     moving = true
     t = 0.0
 
@@ -75,23 +72,32 @@ func _on_collision(another_box) -> void:
     if alive:
         alive = false
         queue_free()
+        _explode_box()
         GridData.box_lost()
     if another_box.alive:
         another_box.alive = false
         another_box.queue_free()
+        another_box._explode_box()
         GridData.box_lost()
+
+func _explode_box() -> void:
+    var explosion = EXPLOSION_SCENE.instantiate()
+    explosion.emitting = true
+    explosion.position = position
+    get_parent().add_child(explosion)
+
 
 func _move_toward_destination(delta: float) -> void:
     if t == 0.0: # The first movement should jump forward
-        t = STARTING_TIME_JUMP
-    t += delta * MOVE_TIME_MULTIPLIER
+        t = GameConstants.STARTING_TIME_JUMP
+    t += delta * GameConstants.MOVE_TIME_MULTIPLIER
     position = original_position.lerp(target_position, t)
     if is_close_enough_to_target():
         finish_move()
 
 func is_close_enough_to_target():
     # using a more efficient check than distance_to
-    return position.distance_squared_to(target_position) < close_enough_squared_amt
+    return position.distance_squared_to(target_position) < GameConstants.CLOSE_ENOUGH_SQUARED
 
 func finish_move() -> void:
     # This may jump a little (this is intenional)
@@ -100,7 +106,9 @@ func finish_move() -> void:
     # Find out where we are
     var current_cell = GridData.cells[target_location]
     if current_cell.cell_type == CellType.CONVEYOR:
-        move_to_next_target(current_cell)
+        tween = get_tree().create_tween()
+        tween.tween_interval(GameConstants.WAIT_BETWEEN_MOVES)
+        tween.tween_callback(move_to_next_target)
     elif current_cell.cell_type == CellType.SINK:
         if current_cell.cell_color == box_color:
             on_good_destination()
@@ -114,20 +122,34 @@ func on_good_destination() -> void:
     GridData.box_delivered()
 
 func on_bad_destination() -> void:
+    _explode_box()    
     queue_free()
     GridData.box_lost()
 
-func move_to_next_target(current_cell: GridCell) -> void:
-    match current_cell.direction:
+func determine_location(dir: Direction, loc: Vector2i, increment: int) -> Vector2i:
+    var new_location = loc
+    match dir:
         Direction.UP:
-            target_location[1] -= 1
+            new_location[1] -= increment
         Direction.DOWN:
-            target_location[1] += 1
+            new_location[1] += increment
         Direction.LEFT:
-            target_location[0] -= 1
+            new_location[0] -= increment
         Direction.RIGHT:
-            target_location[0] += 1
-    target_position = GridData.get_position_from_location(target_location)
-    tween = get_tree().create_tween()
-    tween.tween_interval(WAIT_BETWEEN_MOVES)
-    tween.tween_callback(start_move)
+            new_location[0] += increment
+    return new_location
+
+func move_to_next_target() -> void:
+    var current_cell = GridData.cells[target_location]
+    target_location = determine_location(current_cell.direction, current_cell.location, 1)
+    var next_cell = GridData.cells[target_location]
+    if next_cell.cell_type == CellType.SINK:
+        # Good destinations fly off the screen bad destinations blow up
+        if next_cell.cell_color == box_color:
+            var final_location = determine_location(current_cell.direction, current_cell.location, 3)
+            target_position = GridData.get_position_from_location(final_location)
+        else:
+            target_position = GridData.get_position_from_location(target_location)    
+    else:
+        target_position = GridData.get_position_from_location(target_location)
+    start_move()

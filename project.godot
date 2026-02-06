@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="BFJ"
-run/main_scene="uid://c1v8lbo2d4rkt"
+run/main_scene="uid://dya3rcat8v3rr"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 

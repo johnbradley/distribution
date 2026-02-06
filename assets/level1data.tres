@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="LevelData" format=3 uid="uid://qwsrvcxfywso"]
+
+[ext_resource type="Script" uid="uid://bvvjnn5heqc0e" path="res://assets/cell_event.gd" id="1_77co0"]
+[ext_resource type="Script" uid="uid://cuolso32pqt4r" path="res://assets/level_data.gd" id="2_s6of0"]
+
+[sub_resource type="Resource" id="Resource_le733"]
+script = ExtResource("1_77co0")
+time = 20.0
+region = 4
+index = 2
+color = 2
+metadata/_custom_type_script = "uid://bvvjnn5heqc0e"
+
+[sub_resource type="Resource" id="Resource_1pygl"]
+script = ExtResource("1_77co0")
+time = 20.0
+index = 1
+color = 2
+metadata/_custom_type_script = "uid://bvvjnn5heqc0e"
+
+[resource]
+script = ExtResource("2_s6of0")
+level_idx = 2
+events = Array[ExtResource("1_77co0")]([SubResource("Resource_le733"), SubResource("Resource_1pygl")])
