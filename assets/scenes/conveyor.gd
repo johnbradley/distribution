@@ -1,6 +1,6 @@
 extends Sprite2D
 
-const Direction = GridData.Direction
+const Direction = GridCell.Direction
 
 var location: Vector2i
 var _selection_indicator:Sprite2D
@@ -13,7 +13,7 @@ func _ready() -> void:
 func on_selection_changed(selected_location: Vector2i) -> void:
     _selection_indicator.visible = location == selected_location
 
-func on_conveyor_turned(grid_cell: GridData.GridCell) -> void:
+func on_conveyor_turned(grid_cell: GridCell) -> void:
     if grid_cell.location == location:
         match grid_cell.direction:
             Direction.UP:

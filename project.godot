@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 GameManager="*uid://bi3e5f0b8cfcv"
 GridData="*uid://c3denpvutagjb"
+GameConstants="*uid://d3y71x2m6bsil"
 
 [display]
 

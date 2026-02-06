@@ -1,54 +1,9 @@
 extends Node
 
-const GRID_SIZE: int = 7
-const CELL_SIZE: int = 128
-const DOWNTIME_SECONDS: float = 30.0
-
-enum CellColor {
-    NONE,
-    RED,
-    YELLOW,
-    BLUE
-}
-
-enum CellType {
-    CORNER,
-    SPAWN,
-    SINK,
-    CONVEYOR
-}
-
-enum Direction {
-    NA,
-    UP,
-    DOWN,
-    LEFT,
-    RIGHT
-}
-
-enum SinkType {
-    TOP,
-    LEFT,
-    BOTTOM,
-}
-
-class GridCell:
-    var location: Vector2i
-    var cell_type: CellType
-    var direction: Direction
-    var position: Vector2
-    var cell_color: CellColor
-    var spawn_cnt: int
-    var lifespan: float
-
-    func _init(l: Vector2i, t: CellType, d: Direction, c: CellColor) -> void:
-        location = l
-        cell_type = t
-        direction = d
-        cell_color = c
-        spawn_cnt = 0
-        lifespan = 0.0
-        position = Vector2(location[0]*CELL_SIZE, location[1]*CELL_SIZE)
+const CellType = GridCell.CellType
+const Direction = GridCell.Direction
+const CellColor = GridCell.CellColor
+const SinkType = GridCell.SinkType
 
 var cells: Dictionary[Vector2i, GridCell]
 
@@ -109,12 +64,12 @@ func increment_selected_location(offset: Vector2i):
 
 func reset() -> void:
     reset_cells()
-    reset_remaining_downtime(DOWNTIME_SECONDS)
+    reset_remaining_downtime(GameConstants.DOWNTIME_SECONDS)
 
 func reset_cells() -> void:
     cells.clear()
-    for i in range(GRID_SIZE):
-        for j in range(GRID_SIZE):
+    for i in range(GameConstants.GRID_SIZE):
+        for j in range(GameConstants.GRID_SIZE):
             var location: Vector2i = Vector2i(i,j)
             var cell_type: CellType = get_cell_type(location)
             _set_cell(location, cell_type)
@@ -129,26 +84,26 @@ func _set_cell(location: Vector2i, cell_type: CellType) -> void:
                 direction = Direction.LEFT
             if location[1] == 0:
                 direction = Direction.UP
-            if location[1] == GRID_SIZE -1:
+            if location[1] == GameConstants.GRID_SIZE -1:
                 direction = Direction.DOWN
         CellType.CONVEYOR:
             direction = Direction.LEFT
     cells[location] = GridCell.new(location, cell_type, direction, CellColor.NONE)
 
 func get_cell_type(location: Vector2i) -> CellType:
-    var corner_locations = [0, GRID_SIZE -1]
+    var corner_locations = [0, GameConstants.GRID_SIZE -1]
     if location[0] in corner_locations and location[1] in corner_locations:
         return CellType.CORNER
     if location[0] in corner_locations or location[1] in corner_locations:
         # Right side edge is spawn cells, other edges are sink
-        if location[0] == GRID_SIZE -1:
+        if location[0] == GameConstants.GRID_SIZE -1:
             return CellType.SPAWN
         else:
             return CellType.SINK
     return CellType.CONVEYOR
 
 func get_position_from_location(location: Vector2i) -> Vector2:
-    return Vector2(location[0]*CELL_SIZE, location[1]*CELL_SIZE)
+    return Vector2(location[0]*GameConstants.CELL_SIZE, location[1]*GameConstants.CELL_SIZE)
 
 func move_selection(x_offset, y_offset) -> void:
     var target_location: Vector2i = selected_location
@@ -167,7 +122,7 @@ func turn_selected_conveyor(direction: Direction) -> void:
     conveyor_turned.emit(grid_cell)
 
 func change_spawn(index: int, cell_color: CellColor, spawn_cnt: int) -> void:
-    var cell:GridCell = cells[Vector2i(GRID_SIZE -1, index+1)]
+    var cell:GridCell = cells[Vector2i(GameConstants.GRID_SIZE -1, index+1)]
     if cell.cell_type == CellType.SPAWN:
         cell.cell_color = cell_color
         cell.spawn_cnt = spawn_cnt
@@ -182,7 +137,7 @@ func change_sink(index: int, sink_type: SinkType, cell_color: CellColor, lifespa
             location[0] = index + 1
         SinkType.BOTTOM:
             location[0] = index + 1
-            location[1] = GRID_SIZE - 1
+            location[1] = GameConstants.GRID_SIZE - 1
     var cell:GridCell = cells[location]
     if cell.cell_type == CellType.SINK:
         cell.cell_color = cell_color

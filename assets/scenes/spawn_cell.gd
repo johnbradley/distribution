@@ -1,7 +1,7 @@
 extends Sprite2D
 
-const CellColor = GridData.CellColor
-const Direction = GridData.Direction
+const CellColor = GridCell.CellColor
+const Direction = GridCell.Direction
 
 const FIRST_SPAWN_WAIT: float = 1.0
 const SUBSEQUENT_SPAWN_WAIT: float = 4.0 # 4.0 right now gets every other conveyor cell
@@ -31,7 +31,7 @@ func game_clock_state_changed(running):
         else:
             tween.pause()
 
-func on_change_spawn(cell: GridData.GridCell):
+func on_change_spawn(cell: GridCell):
     if cell.location == location:
         spawn_cnt = cell.spawn_cnt
         spawn_color = cell.cell_color

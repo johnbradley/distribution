@@ -1,7 +1,7 @@
 extends Sprite2D
 
-const CellColor = GridData.CellColor
-const Direction = GridData.Direction
+const CellColor = GridCell.CellColor
+const Direction = GridCell.Direction
 
 @onready var color_indicator:Sprite2D = $ColorIndicator
 const ARROW_BLUE_TEXTURE: Texture2D = preload("res://assets/sprites/arrow_blue.png")
@@ -15,7 +15,7 @@ func _ready() -> void:
     GridData.sink_changed.connect(on_sink_changed)
     GameManager.game_clock_state_changed.connect(game_clock_state_changed)
 
-func on_sink_changed(cell: GridData.GridCell) -> void:
+func on_sink_changed(cell: GridCell) -> void:
     if cell.location == location:
         var schedule_reset = false
         match cell.cell_color:

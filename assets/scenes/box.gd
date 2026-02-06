@@ -1,8 +1,8 @@
 extends Area2D
 
-const CellColor = GridData.CellColor
-const CellType = GridData.CellType
-const Direction = GridData.Direction
+const CellColor = GridCell.CellColor
+const CellType = GridCell.CellType
+const Direction = GridCell.Direction
 
 const WAIT_BEFORE_FIRST_MOVE: float = 1.0
 const WAIT_BETWEEN_MOVES: float = 1.0
@@ -24,6 +24,7 @@ var moving: bool = false
 var close_enough_squared_amt = 100 # 10^2
 var sprite: Sprite2D
 var tween
+var alive: bool = true
 
 func _ready() -> void:
     GameManager.game_clock_state_changed.connect(game_clock_state_changed)
@@ -71,10 +72,14 @@ func _handle_collisions() -> void:
             _on_collision(area)
 
 func _on_collision(another_box) -> void:
-    queue_free()
-    GridData.box_lost()
-    another_box.queue_free()
-    GridData.box_lost()
+    if alive:
+        alive = false
+        queue_free()
+        GridData.box_lost()
+    if another_box.alive:
+        another_box.alive = false
+        another_box.queue_free()
+        GridData.box_lost()
 
 func _move_toward_destination(delta: float) -> void:
     if t == 0.0: # The first movement should jump forward
@@ -112,7 +117,7 @@ func on_bad_destination() -> void:
     queue_free()
     GridData.box_lost()
 
-func move_to_next_target(current_cell: GridData.GridCell) -> void:
+func move_to_next_target(current_cell: GridCell) -> void:
     match current_cell.direction:
         Direction.UP:
             target_location[1] -= 1
