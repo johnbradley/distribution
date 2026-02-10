@@ -1,4 +1,3 @@
-@tool
 extends Node2D
 
 const CellColor = GridData.CellColor

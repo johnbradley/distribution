@@ -1,4 +1,3 @@
-@tool
 extends Node
 
 const CellType = GridCell.CellType
