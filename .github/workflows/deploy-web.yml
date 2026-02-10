@@ -16,6 +16,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Install fontconfig
+        run: |
+          apt-get update -qq
+          apt-get install -y -qq fontconfig
+
       - name: Import project
         run: godot --headless -e --quit || true
         timeout-minutes: 5
