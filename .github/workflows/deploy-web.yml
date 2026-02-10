@@ -5,79 +5,42 @@ on:
     branches: [main]
   workflow_dispatch:
 
-permissions:
-  contents: write
-
 env:
   GODOT_VERSION: "4.6"
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
+    container:
+      image: barichello/godot-ci:4.6
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install Godot
-        run: |
-          wget -q https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-stable/Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip
-          unzip -q Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip
-          sudo mv Godot_v${GODOT_VERSION}-stable_linux.x86_64 /usr/local/bin/godot
-          sudo chmod +x /usr/local/bin/godot
-
-      - name: Install Export Templates
-        run: |
-          mkdir -p ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
-          wget -q https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-stable/Godot_v${GODOT_VERSION}-stable_export_templates.tpz
-          unzip -q Godot_v${GODOT_VERSION}-stable_export_templates.tpz
-          mv templates/* ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable/
-
-      - name: Import Project
+      - name: Import project
         run: godot --headless -e --quit || true
         timeout-minutes: 5
 
-      - name: Export for Web
+      - name: Export Web
         run: |
           mkdir -p build/web
           godot --headless --export-release "Web" build/web/index.html
 
-      - name: Add Cross-Origin Isolation Service Worker
-        run: |
-          cat > build/web/coi-serviceworker.js << 'COIEOF'
-          // Enables SharedArrayBuffer on GitHub Pages by adding required COOP/COEP headers
-          if (typeof window === 'undefined') {
-            self.addEventListener("install", () => self.skipWaiting());
-            self.addEventListener("activate", (e) => e.waitUntil(self.clients.claim()));
-            self.addEventListener("fetch", function (event) {
-              if (event.request.cache === "only-if-cached" && event.request.mode !== "same-origin") return;
-              event.respondWith(
-                fetch(event.request)
-                  .then(function (response) {
-                    if (response.status === 0) return response;
-                    const newHeaders = new Headers(response.headers);
-                    newHeaders.set("Cross-Origin-Embedder-Policy", "require-corp");
-                    newHeaders.set("Cross-Origin-Opener-Policy", "same-origin");
-                    return new Response(response.body, {
-                      status: response.status,
-                      statusText: response.statusText,
-                      headers: newHeaders,
-                    });
-                  })
-                  .catch((e) => console.error(e))
-              );
-            });
-          } else {
-            (() => {
-              if (window.crossOriginIsolated !== false) return;
-              const r = navigator.serviceWorker.register(window.document.currentScript.src);
-              r.then((reg) => {
-                if (reg.active && !navigator.serviceWorker.controller) {
-                  window.location.reload();
-                }
-              });
-            })();
-          }
-          COIEOF
-          sed -i 's|<head>|<head><script src="coi-serviceworker.js"></script>|' build/web/index.html
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: web-build
+          path: build/web
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: web-build
+          path: build/web
 
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v4
