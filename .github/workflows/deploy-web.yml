@@ -21,6 +21,11 @@ jobs:
           apt-get update -qq
           apt-get install -y -qq fontconfig
 
+      - name: Copy export templates
+        run: |
+          mkdir -p /github/home/.local/share/godot/export_templates/
+          cp -r /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable /github/home/.local/share/godot/export_templates/
+
       - name: Import project
         run: godot --headless -e --quit || true
         timeout-minutes: 5
