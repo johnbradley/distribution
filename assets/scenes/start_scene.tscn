@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://dya3rcat8v3rr"]
 
 [ext_resource type="Script" uid="uid://ogp04c0q1ny2" path="res://assets/scenes/start_scene.gd" id="1_sntry"]
+[ext_resource type="Texture2D" uid="uid://brvawake4p63x" path="res://assets/sprites/box_blue.png" id="2_gusdy"]
+[ext_resource type="Texture2D" uid="uid://ctrwmpqxs7r5r" path="res://assets/sprites/box_yellow.png" id="3_j56i8"]
+[ext_resource type="Texture2D" uid="uid://ccrdvcaq4tddx" path="res://assets/sprites/box_red.png" id="4_2y5pp"]
 
 [node name="StartScene" type="Node2D" unique_id=1523391321]
 script = ExtResource("1_sntry")
@@ -26,11 +29,31 @@ theme_override_constants/separation = 20
 layout_mode = 2
 size_flags_vertical = 3
 
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/PanelContainer/HBoxContainer/VBoxContainer/Spacer" unique_id=786512225]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
 [node name="Label" type="Label" parent="CanvasLayer/PanelContainer/HBoxContainer/VBoxContainer" unique_id=1665066205]
 layout_mode = 2
 theme_override_font_sizes/font_size = 120
 text = "Distribution"
 horizontal_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/PanelContainer/HBoxContainer/VBoxContainer/Label" unique_id=468558518]
+position = Vector2(736, 35)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_gusdy")
+
+[node name="Sprite2D2" type="Sprite2D" parent="CanvasLayer/PanelContainer/HBoxContainer/VBoxContainer/Label" unique_id=1188810905]
+position = Vector2(1129, 34)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("3_j56i8")
+
+[node name="Sprite2D3" type="Sprite2D" parent="CanvasLayer/PanelContainer/HBoxContainer/VBoxContainer/Label" unique_id=1568223261]
+position = Vector2(914, 35)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("4_2y5pp")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/PanelContainer/HBoxContainer/VBoxContainer" unique_id=1354233715]
 layout_mode = 2
