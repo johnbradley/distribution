@@ -1,0 +1,40 @@
+{
+  "level": 3,
+  "description": "Late bloomers",
+  "downtime_limit": 20,
+  "max_boxes_lost": 1,
+  "events": [
+    {
+      "type": "spawn",
+      "spawn_cell": 1,
+      "position": "right",
+      "color": "red",
+      "start_time": 0,
+      "box_count": 5
+    },
+    {
+      "type": "spawn",
+      "spawn_cell": 2,
+      "position": "right",
+      "color": "yellow",
+      "start_time": 0,
+      "box_count": 4
+    },
+    {
+      "type": "sink",
+      "sink_cell": 1,
+      "position": "left",
+      "color": "red",
+      "start_time": 15,
+      "end_time": 40
+    },
+    {
+      "type": "sink",
+      "sink_cell": 1,
+      "position": "bottom",
+      "color": "yellow",
+      "start_time": 20,
+      "end_time": 50
+    }
+  ]
+}

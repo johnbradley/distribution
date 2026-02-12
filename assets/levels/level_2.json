@@ -1,0 +1,48 @@
+{
+  "level": 2,
+  "description": "Double trouble",
+  "downtime_limit": 20,
+  "max_boxes_lost": 2,
+  "events": [
+    {
+      "type": "spawn",
+      "spawn_cell": 2,
+      "position": "right",
+      "color": "yellow",
+      "start_time": 0,
+      "box_count": 5
+    },
+    {
+      "type": "sink",
+      "sink_cell": 4,
+      "position": "top",
+      "color": "yellow",
+      "start_time": 0,
+      "end_time": 15
+    },
+    {
+      "type": "sink",
+      "sink_cell": 3,
+      "position": "bottom",
+      "color": "yellow",
+      "start_time": 15,
+      "end_time": 30
+    },
+    {
+      "type": "spawn",
+      "spawn_cell": 4,
+      "position": "right",
+      "color": "blue",
+      "start_time": 2,
+      "box_count": 6
+    },
+    {
+      "type": "sink",
+      "sink_cell": 4,
+      "position": "bottom",
+      "color": "blue",
+      "start_time": 2,
+      "end_time": 30
+    }
+  ]
+}

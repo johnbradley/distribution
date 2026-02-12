@@ -7,8 +7,15 @@ func _ready() -> void:
         var button: Button = get_node("%%%s" % ["Level%d" % i])
         button.pressed.connect(_on_level_pressed.bind(i))
         button.disabled = i > GameManager.unlocked_level
-        if GameManager.best_scores.has(i):
-            button.text += "  ·  Best: %d lost" % GameManager.best_scores[i]
+        var level_data = LevelData.read_level_data(i)
+        if level_data:
+            var parts: Array[String] = ["Level %d" % i]
+            parts.append(level_data["description"])
+            parts.append("%ds downtime" % int(level_data["downtime_limit"]))
+            parts.append("max %d lost" % int(level_data["max_boxes_lost"]))
+            if GameManager.best_scores.has(i):
+                parts.append("best: %d lost" % GameManager.best_scores[i])
+            button.text = "  ·  ".join(parts)
     %Level1.grab_focus()
 
 

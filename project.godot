@@ -13,6 +13,8 @@ config_version=5
 config/name="distribution"
 run/main_scene="uid://dya3rcat8v3rr"
 config/features=PackedStringArray("4.6", "Forward Plus")
+boot_splash/bg_color=Color(0, 0.41960785, 0.23529412, 1)
+boot_splash/image="uid://bli44cg0p7pci"
 config/icon="res://icon.svg"
 
 [autoload]

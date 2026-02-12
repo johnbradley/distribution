@@ -198,7 +198,6 @@ func has_active_spawners() -> bool:
 
 func set_max_boxes_lost(num: int) -> void:
     max_boxes_lost = num
-    print("MB", max_boxes_lost)
     box_counts_changed.emit(delivered_boxes, lost_boxes, pending_boxes, total_boxes, max_boxes_lost)
 
 func check_for_game_over() -> void:

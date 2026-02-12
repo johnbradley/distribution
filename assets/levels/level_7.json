@@ -1,0 +1,80 @@
+{
+  "level": 7,
+  "description": "Good luck",
+  "downtime_limit": 12,
+  "max_boxes_lost": 2,
+  "events": [
+    {
+      "type": "spawn",
+      "spawn_cell": 1,
+      "position": "right",
+      "color": "red",
+      "start_time": 0,
+      "box_count": 7
+    },
+    {
+      "type": "spawn",
+      "spawn_cell": 3,
+      "position": "right",
+      "color": "yellow",
+      "start_time": 0,
+      "box_count": 7
+    },
+    {
+      "type": "spawn",
+      "spawn_cell": 5,
+      "position": "right",
+      "color": "blue",
+      "start_time": 0,
+      "box_count": 7
+    },
+    {
+      "type": "sink",
+      "sink_cell": 1,
+      "position": "left",
+      "color": "red",
+      "start_time": 0,
+      "end_time": 15
+    },
+    {
+      "type": "sink",
+      "sink_cell": 4,
+      "position": "top",
+      "color": "red",
+      "start_time": 15,
+      "end_time": 35
+    },
+    {
+      "type": "sink",
+      "sink_cell": 2,
+      "position": "bottom",
+      "color": "yellow",
+      "start_time": 0,
+      "end_time": 15
+    },
+    {
+      "type": "sink",
+      "sink_cell": 4,
+      "position": "left",
+      "color": "yellow",
+      "start_time": 15,
+      "end_time": 35
+    },
+    {
+      "type": "sink",
+      "sink_cell": 3,
+      "position": "left",
+      "color": "blue",
+      "start_time": 0,
+      "end_time": 15
+    },
+    {
+      "type": "sink",
+      "sink_cell": 1,
+      "position": "bottom",
+      "color": "blue",
+      "start_time": 15,
+      "end_time": 35
+    }
+  ]
+}
