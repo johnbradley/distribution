@@ -28,7 +28,7 @@ func _ready() -> void:
 
     var level_exists = level_cron.play_level(GameManager.current_level)
     if not level_exists:
-        print("At the end")
+        GameManager.showWinGameScene()
 
 
 func _add_cell_sprites() -> void:

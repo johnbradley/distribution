@@ -18,10 +18,11 @@ signal selection_changed(selected_location: Vector2i)
 var selected_location: Vector2i = Vector2i(0, 0)
 
 var delivered_boxes: int = 0
+var max_boxes_lost: int = 0
 var lost_boxes: int = 0
 var pending_boxes: int = 0
 var total_boxes: int = 0
-signal box_counts_changed(delivered: int, lost: int, pending: int, total_boxes: int)
+signal box_counts_changed(delivered: int, lost: int, pending: int, total_boxes: int, max_boxes_lost: int)
 
 signal conveyor_turned(grid_cell: GridCell)
 signal spawn_changed(grid_cell: GridCell)
@@ -76,7 +77,6 @@ func increment_selected_location(offset: Vector2i):
 
 func reset() -> void:
     reset_cells()
-    reset_remaining_downtime(GameConstants.DOWNTIME_SECONDS)
     delivered_boxes = 0
     lost_boxes = 0
     pending_boxes = 0    
@@ -168,24 +168,24 @@ func reset_sink(location: Vector2i) -> void:
 
 func add_pending_box() -> void:
     pending_boxes += 1
-    box_counts_changed.emit(delivered_boxes, lost_boxes, pending_boxes, total_boxes)
+    box_counts_changed.emit(delivered_boxes, lost_boxes, pending_boxes, total_boxes, max_boxes_lost)
     check_for_game_over()
 
 func box_delivered() -> void:
     delivered_boxes += 1
     pending_boxes -= 1
-    box_counts_changed.emit(delivered_boxes, lost_boxes, pending_boxes, total_boxes)
+    box_counts_changed.emit(delivered_boxes, lost_boxes, pending_boxes, total_boxes, max_boxes_lost)
     check_for_game_over()
 
 func box_lost() -> void:
     lost_boxes += 1
     pending_boxes -= 1
-    box_counts_changed.emit(delivered_boxes, lost_boxes, pending_boxes, total_boxes)
+    box_counts_changed.emit(delivered_boxes, lost_boxes, pending_boxes, total_boxes, max_boxes_lost)
     check_for_game_over()
 
 func set_total_boxes(total) -> void:
     total_boxes = total
-    box_counts_changed.emit(delivered_boxes, lost_boxes, pending_boxes, total_boxes)
+    box_counts_changed.emit(delivered_boxes, lost_boxes, pending_boxes, total_boxes, max_boxes_lost)
 
 func reset_spawner(location: Vector2i) -> void:
     cells[location].spawn_cnt = 0
@@ -196,11 +196,16 @@ func has_active_spawners() -> bool:
             return true
     return false
 
+func set_max_boxes_lost(num: int) -> void:
+    max_boxes_lost = num
+    print("MB", max_boxes_lost)
+    box_counts_changed.emit(delivered_boxes, lost_boxes, pending_boxes, total_boxes, max_boxes_lost)
+
 func check_for_game_over() -> void:
     # if there are more than 2 lost boxes show failure scene
     # if there are no spawners and pending_boxes = 0 the game is over
     # otherwise show sucess scene
-    if lost_boxes > 2:
+    if lost_boxes > max_boxes_lost:
         GameManager.game_lost()
     elif not has_active_spawners() and pending_boxes == 0:
         GameManager.game_won()

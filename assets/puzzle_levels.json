@@ -2,320 +2,89 @@
   "levels": [
     {
       "level": 1,
-      "name": "Basic Training",
-      "objective": "Learn the fundamentals - single color, single path",
-      "downtime_limit": 60,
-      "max_boxes_lost": 2,
-      "events": [
-        {
-          "type": "spawn",
-          "spawn_cell": 1,
-          "position": "right",
-          "color": "red",
-          "start_time": 0,
-          "end_time": 30,
-          "box_count": 5,
-          "interval": 6
-        },
-        {
-          "type": "sink",
-          "sink_cell": 1,
-          "position": "left",
-          "color": "red",
-          "start_time": 0,
-          "end_time": 30
-        }
-      ]
-    },
-    {
-      "level": 2,
-      "name": "Color Sorting",
-      "objective": "Handle two colors with separate destinations",
-      "downtime_limit": 45,
-      "max_boxes_lost": 3,
-      "events": [
-        {
-          "type": "spawn",
-          "spawn_cell": 1,
-          "position": "right",
-          "color": "red",
-          "start_time": 0,
-          "end_time": 40,
-          "box_count": 4,
-          "interval": 10
-        },
-        {
-          "type": "spawn",
-          "spawn_cell": 2,
-          "position": "right",
-          "color": "blue",
-          "start_time": 5,
-          "end_time": 45,
-          "box_count": 4,
-          "interval": 10
-        },
-        {
-          "type": "sink",
-          "sink_cell": 1,
-          "position": "top",
-          "color": "red",
-          "start_time": 0,
-          "end_time": 40
-        },
-        {
-          "type": "sink",
-          "sink_cell": 2,
-          "position": "bottom",
-          "color": "blue",
-          "start_time": 5,
-          "end_time": 45
-        }
-      ]
-    },
-    {
-      "level": 3,
-      "name": "Destination Switching",
-      "objective": "Reconfigure paths when destinations change",
-      "downtime_limit": 40,
-      "max_boxes_lost": 2,
-      "events": [
-        {
-          "type": "spawn",
-          "spawn_cell": 1,
-          "position": "right",
-          "color": "red",
-          "start_time": 0,
-          "end_time": 60,
-          "box_count": 8,
-          "interval": 7.5
-        },
-        {
-          "type": "sink",
-          "sink_cell": 1,
-          "position": "left",
-          "color": "red",
-          "start_time": 0,
-          "end_time": 25
-        },
-        {
-          "type": "sink",
-          "sink_cell": 2,
-          "position": "top",
-          "color": "red",
-          "start_time": 30,
-          "end_time": 60
-        }
-      ]
-    },
-    {
-      "level": 4,
-      "name": "Rush Hour",
-      "objective": "High throughput with three colors",
-      "downtime_limit": 50,
-      "max_boxes_lost": 4,
-      "events": [
-        {
-          "type": "spawn",
-          "spawn_cell": 1,
-          "position": "right",
-          "color": "red",
-          "start_time": 0,
-          "end_time": 50,
-          "box_count": 6,
-          "interval": 8
-        },
-        {
-          "type": "spawn",
-          "spawn_cell": 3,
-          "position": "right",
-          "color": "blue",
-          "start_time": 3,
-          "end_time": 53,
-          "box_count": 6,
-          "interval": 8
-        },
-        {
-          "type": "spawn",
-          "spawn_cell": 5,
-          "position": "right",
-          "color": "yellow",
-          "start_time": 6,
-          "end_time": 56,
-          "box_count": 6,
-          "interval": 8
-        },
-        {
-          "type": "sink",
-          "sink_cell": 1,
-          "position": "left",
-          "color": "red",
-          "start_time": 0,
-          "end_time": 60
-        },
-        {
-          "type": "sink",
-          "sink_cell": 2,
-          "position": "top",
-          "color": "blue",
-          "start_time": 3,
-          "end_time": 60
-        },
-        {
-          "type": "sink",
-          "sink_cell": 3,
-          "position": "bottom",
-          "color": "yellow",
-          "start_time": 6,
-          "end_time": 60
-        }
-      ]
-    },
-    {
-      "level": 5,
-      "name": "The Switcheroo",
-      "objective": "Multiple destination changes with two colors",
-      "downtime_limit": 35,
-      "max_boxes_lost": 3,
-      "events": [
-        {
-          "type": "spawn",
-          "spawn_cell": 2,
-          "position": "right",
-          "color": "red",
-          "start_time": 0,
-          "end_time": 70,
-          "box_count": 10,
-          "interval": 7
-        },
-        {
-          "type": "spawn",
-          "spawn_cell": 4,
-          "position": "right",
-          "color": "blue",
-          "start_time": 2,
-          "end_time": 72,
-          "box_count": 10,
-          "interval": 7
-        },
-        {
-          "type": "sink",
-          "sink_cell": 1,
-          "position": "left",
-          "color": "red",
-          "start_time": 0,
-          "end_time": 20
-        },
-        {
-          "type": "sink",
-          "sink_cell": 2,
-          "position": "top",
-          "color": "blue",
-          "start_time": 0,
-          "end_time": 20
-        },
-        {
-          "type": "sink",
-          "sink_cell": 3,
-          "position": "bottom",
-          "color": "red",
-          "start_time": 25,
-          "end_time": 45
-        },
-        {
-          "type": "sink",
-          "sink_cell": 4,
-          "position": "top",
-          "color": "blue",
-          "start_time": 25,
-          "end_time": 45
-        },
-        {
-          "type": "sink",
-          "sink_cell": 5,
-          "position": "left",
-          "color": "red",
-          "start_time": 50,
-          "end_time": 75
-        },
-        {
-          "type": "sink",
-          "sink_cell": 6,
-          "position": "bottom",
-          "color": "blue",
-          "start_time": 50,
-          "end_time": 75
-        }
-      ]
-    },
-    {
-      "level": 6,
-      "name": "Precision Timing",
-      "objective": "Intermittent spawning with strict loss limits",
-      "downtime_limit": 30,
+      "description": "Single spawn with first sync in fine location, second spawn a block down",
+      "downtime_limit": 20,
       "max_boxes_lost": 1,
       "events": [
         {
           "type": "spawn",
           "spawn_cell": 1,
           "position": "right",
-          "color": "yellow",
-          "start_time": 0,
-          "end_time": 15,
-          "box_count": 4,
-          "interval": 3.75
-        },
-        {
-          "type": "spawn",
-          "spawn_cell": 3,
-          "position": "right",
           "color": "red",
-          "start_time": 20,
-          "end_time": 30,
-          "box_count": 3,
-          "interval": 3.3
-        },
-        {
-          "type": "spawn",
-          "spawn_cell": 5,
-          "position": "right",
-          "color": "blue",
-          "start_time": 35,
-          "end_time": 50,
-          "box_count": 4,
-          "interval": 3.75
+          "start_time": 0,
+          "box_count": 5
         },
         {
           "type": "sink",
           "sink_cell": 1,
-          "position": "top",
-          "color": "yellow",
+          "position": "left",
+          "color": "red",
           "start_time": 0,
-          "end_time": 20
+          "end_time": 15
         },
         {
           "type": "sink",
           "sink_cell": 2,
           "position": "left",
           "color": "red",
-          "start_time": 20,
-          "end_time": 35
+          "start_time": 15,
+          "end_time": 30
+        }        
+      ]
+    },
+    {
+      "level": 2,
+      "description": "Two spawners that then cross",
+      "downtime_limit": 20,
+      "max_boxes_lost": 2,
+      "events": [
+        {
+          "type": "spawn",
+          "spawn_cell": 2,
+          "position": "right",
+          "color": "yellow",
+          "start_time": 0,
+          "box_count": 5
+        },
+        {
+          "type": "sink",
+          "sink_cell": 4,
+          "position": "top",
+          "color": "yellow",
+          "start_time": 0,
+          "end_time": 15
         },
         {
           "type": "sink",
           "sink_cell": 3,
           "position": "bottom",
+          "color": "yellow",
+          "start_time": 15,
+          "end_time": 30
+        }, 
+        {
+          "type": "spawn",
+          "spawn_cell": 4,
+          "position": "right",
           "color": "blue",
-          "start_time": 35,
-          "end_time": 55
+          "start_time": 2,
+          "box_count": 5
+        },        
+        {
+          "type": "sink",
+          "sink_cell": 4,
+          "position": "bottom",
+          "color": "blue",
+          "start_time": 2,
+          "end_time": 30
         }
       ]
     },
     {
-      "level": 7,
-      "name": "The Gauntlet",
-      "objective": "Everything at once - the final challenge",
-      "downtime_limit": 45,
-      "max_boxes_lost": 5,
+      "level": 3,
+      "description": "todo",
+      "downtime_limit": 20,
+      "max_boxes_lost": 1,
       "events": [
         {
           "type": "spawn",
@@ -323,102 +92,16 @@
           "position": "right",
           "color": "red",
           "start_time": 0,
-          "end_time": 80,
-          "box_count": 8,
-          "interval": 10
-        },
-        {
-          "type": "spawn",
-          "spawn_cell": 3,
-          "position": "right",
-          "color": "blue",
-          "start_time": 0,
-          "end_time": 80,
-          "box_count": 8,
-          "interval": 10
-        },
-        {
-          "type": "spawn",
-          "spawn_cell": 5,
-          "position": "right",
-          "color": "yellow",
-          "start_time": 0,
-          "end_time": 80,
-          "box_count": 8,
-          "interval": 10
+          "box_count": 5
         },
         {
           "type": "sink",
           "sink_cell": 1,
           "position": "left",
           "color": "red",
-          "start_time": 0,
-          "end_time": 25
-        },
-        {
-          "type": "sink",
-          "sink_cell": 2,
-          "position": "top",
-          "color": "blue",
-          "start_time": 0,
-          "end_time": 25
-        },
-        {
-          "type": "sink",
-          "sink_cell": 3,
-          "position": "bottom",
-          "color": "yellow",
-          "start_time": 0,
-          "end_time": 25
-        },
-        {
-          "type": "sink",
-          "sink_cell": 4,
-          "position": "top",
-          "color": "red",
-          "start_time": 30,
-          "end_time": 55
-        },
-        {
-          "type": "sink",
-          "sink_cell": 5,
-          "position": "left",
-          "color": "blue",
-          "start_time": 30,
-          "end_time": 55
-        },
-        {
-          "type": "sink",
-          "sink_cell": 6,
-          "position": "bottom",
-          "color": "yellow",
-          "start_time": 30,
-          "end_time": 55
-        },
-        {
-          "type": "sink",
-          "sink_cell": 7,
-          "position": "bottom",
-          "color": "red",
-          "start_time": 60,
-          "end_time": 85
-        },
-        {
-          "type": "sink",
-          "sink_cell": 8,
-          "position": "left",
-          "color": "blue",
-          "start_time": 60,
-          "end_time": 85
-        },
-        {
-          "type": "sink",
-          "sink_cell": 9,
-          "position": "top",
-          "color": "yellow",
-          "start_time": 60,
-          "end_time": 85
-        }
+          "start_time": 15,
+          "end_time": 40
+        }     
       ]
     }
   ]

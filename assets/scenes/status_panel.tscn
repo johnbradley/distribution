@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cxsjp8odrlmul"]
 
 [ext_resource type="Script" uid="uid://bmtn8g7xtmsk6" path="res://assets/scenes/status_panel.gd" id="1_orurf"]
+[ext_resource type="FontFile" uid="uid://b82kqst0uelga" path="res://assets/fonts/RobotoMono-VariableFont_wght.ttf" id="2_l5nl5"]
 
 [node name="StatusPanel" type="GridContainer" unique_id=993052419]
 offset_right = 410.0
@@ -9,21 +10,15 @@ theme_override_constants/h_separation = 20
 columns = 2
 script = ExtResource("1_orurf")
 
-[node name="LevelLabel" type="Label" parent="." unique_id=1295024503]
-layout_mode = 2
-text = "Level:"
-
-[node name="Level" type="Label" parent="." unique_id=673973229]
-layout_mode = 2
-horizontal_alignment = 2
-
 [node name="DowntimeLabel" type="Label" parent="." unique_id=177776496]
 layout_mode = 2
 text = "Downtime:"
 
 [node name="Downtime" type="Label" parent="." unique_id=781922515]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
-text = "0.0"
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_l5nl5")
 horizontal_alignment = 2
 
 [node name="DeliveredLabel" type="Label" parent="." unique_id=277608019]
@@ -32,7 +27,7 @@ text = "Delivered:"
 
 [node name="Delivered" type="Label" parent="." unique_id=1663392264]
 layout_mode = 2
-text = "0"
+theme_override_fonts/font = ExtResource("2_l5nl5")
 horizontal_alignment = 2
 
 [node name="LostLabel" type="Label" parent="." unique_id=1025791668]
@@ -41,7 +36,7 @@ text = "Lost:"
 
 [node name="Lost" type="Label" parent="." unique_id=1395023701]
 layout_mode = 2
-text = "0"
+theme_override_fonts/font = ExtResource("2_l5nl5")
 horizontal_alignment = 2
 
 [node name="PendingLabel" type="Label" parent="." unique_id=2061210288]
@@ -50,7 +45,7 @@ text = "Pending:"
 
 [node name="Pending" type="Label" parent="." unique_id=2055492723]
 layout_mode = 2
-text = "0"
+theme_override_fonts/font = ExtResource("2_l5nl5")
 horizontal_alignment = 2
 
 [node name="TotalLabel" type="Label" parent="." unique_id=939388650]
@@ -59,5 +54,5 @@ text = "Total:"
 
 [node name="Total" type="Label" parent="." unique_id=1270609119]
 layout_mode = 2
-text = "0"
+theme_override_fonts/font = ExtResource("2_l5nl5")
 horizontal_alignment = 2

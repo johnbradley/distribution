@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cxsjp8odrlmul" path="res://assets/scenes/status_panel.tscn" id="1_x1kwt"]
 [ext_resource type="PackedScene" uid="uid://d3inht7y55iak" path="res://assets/scenes/game_grid.tscn" id="1_yot8c"]
 [ext_resource type="PackedScene" uid="uid://c75hp557ts0bg" path="res://assets/scenes/control_details.tscn" id="2_jd8xj"]
+[ext_resource type="PackedScene" uid="uid://daav7q5lw5luy" path="res://assets/scenes/level_panel.tscn" id="2_ve6l2"]
 [ext_resource type="PackedScene" uid="uid://ddos8l7ywjgcq" path="res://assets/scenes/success_scene.tscn" id="3_5t2cw"]
 [ext_resource type="PackedScene" uid="uid://bgs7j1b5oei7p" path="res://assets/scenes/failure_panel.tscn" id="4_aufxv"]
 
@@ -53,19 +54,20 @@ color = Color(0, 0.41960785, 0.23529412, 1)
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=203489628]
 layer = 2
 
+[node name="LevelPanel" parent="CanvasLayer" unique_id=1026787602 instance=ExtResource("2_ve6l2")]
+
 [node name="ControlDetails" parent="CanvasLayer" unique_id=576852742 instance=ExtResource("2_jd8xj")]
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -633.0
-offset_top = -7.0
-offset_right = 288.0
-offset_bottom = 464.0
+offset_left = -625.0
+offset_top = -6.0
+offset_right = -32.0
+offset_bottom = 465.0
 grow_horizontal = 0
 grow_vertical = 2
-brief = true
 
 [node name="StatusPanel" parent="CanvasLayer" unique_id=256077909 instance=ExtResource("1_x1kwt")]
 offset_left = 1288.0

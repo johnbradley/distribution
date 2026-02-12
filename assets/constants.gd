@@ -3,7 +3,6 @@ extends Node
 const GRID_SIZE: int = 7
 const CELL_SIZE: int = 128
 const CELL_OFFSET: int = 64 + 64 # Half cell size plus offset for box slides 
-const DOWNTIME_SECONDS: float = 15.0
 const DOWNTIME_UPDATE_INCREMENT: float = 0.2
 
 const WAIT_BEFORE_FIRST_MOVE: float = 1.0

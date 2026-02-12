@@ -7,7 +7,7 @@ enum GameState {
     LOST
 }
 
-var current_level: int = 1
+var current_level: int = 3
 
 var _game_state: GameState = GameState.PLAYING
 signal game_state_changed(game_state: GameState)
@@ -53,3 +53,6 @@ func game_won() -> void:
 func game_lost() -> void:
     _game_state = GameState.LOST
     game_state_changed.emit(_game_state)
+
+func showWinGameScene() -> void:
+    get_tree().change_scene_to_file("res://assets/scenes/win_game_scene.tscn")

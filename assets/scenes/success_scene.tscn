@@ -51,6 +51,6 @@ size_flags_vertical = 3
 
 [node name="Button" type="Button" parent="MarginContainer/VBoxContainer" unique_id=888925888]
 layout_mode = 2
-text = "Next Level"
+text = "Next"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]

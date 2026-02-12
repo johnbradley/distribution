@@ -27,7 +27,8 @@ func play_level(level_num: int) -> bool:
         var total_boxes = 0
         var downtime_limit = level_data["downtime_limit"]
         var max_boxes_lost = level_data["max_boxes_lost"]
-        print("TODO update grid_data with downtime: ", downtime_limit, " max_boxes_lost: ", max_boxes_lost)
+        GridData.reset_remaining_downtime(downtime_limit)
+        GridData.set_max_boxes_lost(max_boxes_lost)
         for event in level_data["events"]:
             schedule_event(event)
             total_boxes += event.get("box_count", 0)
@@ -59,18 +60,6 @@ func process_event(dict: Dictionary) -> void:
 
 func get_lifespan(dict: Dictionary) -> float:
     return dict["end_time"] - dict["start_time"]
-
-func process_spawn_start(cell_idx, color, box_count, _interval) -> void:
-    GridData.change_spawn(cell_idx, color, box_count)
-    
-func process_spawn_end(_cell_idx) -> void:
-    pass
-
-func process_sink_start(cell_idx, sink_type, color) -> void:
-    GridData.change_sink(cell_idx, sink_type, color, 30)
-
-func process_sink_end(_cell_idx, _sink_type) -> void:
-    pass
 
 func get_cell_type(dict: Dictionary) -> CellType:
     if dict["type"] == "spawn":
