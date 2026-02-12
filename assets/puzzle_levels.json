@@ -68,7 +68,7 @@
           "position": "right",
           "color": "blue",
           "start_time": 2,
-          "box_count": 5
+          "box_count": 6
         },        
         {
           "type": "sink",

@@ -7,7 +7,7 @@ enum GameState {
     LOST
 }
 
-var current_level: int = 3
+var current_level: int = 1
 
 var _game_state: GameState = GameState.PLAYING
 signal game_state_changed(game_state: GameState)
