@@ -1,6 +1,8 @@
 extends Node2D
 
 func _ready() -> void:
+    if OS.has_feature("web"):
+        %Exit.hide()
     %Start.grab_focus()
 
 func _on_exit_pressed() -> void:
