@@ -1,6 +1,10 @@
 [gd_scene format=3 uid="uid://ct8kms8yv8k14"]
 
 [ext_resource type="Script" uid="uid://diqdrgqy2avan" path="res://assets/scenes/pause_dialog.gd" id="1_6ijv3"]
+[ext_resource type="StyleBox" path="res://assets/styles/btn_focus.tres" id="btn_focus"]
+[ext_resource type="StyleBox" path="res://assets/styles/btn_hover.tres" id="btn_hover"]
+[ext_resource type="StyleBox" path="res://assets/styles/btn_normal.tres" id="btn_normal"]
+[ext_resource type="StyleBox" path="res://assets/styles/btn_pressed.tres" id="btn_pressed"]
 
 [node name="PauseDialog" type="PanelContainer" unique_id=1412907637]
 anchors_preset = 15
@@ -47,8 +51,13 @@ theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
 [node name="ResumeButton" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer" unique_id=1322132410]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/normal = ExtResource("btn_normal")
+theme_override_styles/pressed = ExtResource("btn_pressed")
+theme_override_styles/hover = ExtResource("btn_hover")
+theme_override_styles/focus = ExtResource("btn_focus")
 text = "Resume"
 
 [node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer" unique_id=185868305]
@@ -61,6 +70,10 @@ theme_override_constants/margin_bottom = 4
 [node name="QuitButton" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer2" unique_id=2027189389]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/normal = ExtResource("btn_normal")
+theme_override_styles/pressed = ExtResource("btn_pressed")
+theme_override_styles/hover = ExtResource("btn_hover")
+theme_override_styles/focus = ExtResource("btn_focus")
 text = "Quit"
 
 [node name="Spacer2" type="Control" parent="VBoxContainer/HBoxContainer" unique_id=1956474625]

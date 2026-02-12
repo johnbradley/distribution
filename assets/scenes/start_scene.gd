@@ -7,4 +7,4 @@ func _on_exit_pressed() -> void:
     GameManager.exit_game()
 
 func _on_start_pressed() -> void:
-    GameManager.show_game_scene()
+    GameManager.show_level_select_scene()

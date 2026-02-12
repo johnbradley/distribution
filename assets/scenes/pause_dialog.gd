@@ -5,6 +5,8 @@ func _ready() -> void:
 
 func _on_game_state_changed(game_state: GameManager.GameState) -> void:
     visible = game_state == GameManager.GameState.PAUSED
+    if visible:
+        %ResumeButton.grab_focus()
 
 # When user presses escape show pause menu
 func _input(event: InputEvent) -> void:
