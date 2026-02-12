@@ -89,7 +89,6 @@ func get_color(dict: Dictionary) -> CellColor:
         return CellColor.BLUE
     return CellColor.NONE             
 
-# "box_count": 5.0, "interval": 6.0 
 func get_box_count(dict: Dictionary) -> int:
     return dict["box_count"]
 
