@@ -1,8 +1,10 @@
 extends Node
 
 func _ready() -> void:
-    %Ok.grab_focus()
+    %Play.grab_focus()
 
-func _on_button_pressed() -> void:
-    GridData.reset()
-    GameManager.show_game_scene()
+func _on_back_pressed() -> void:
+    GameManager.show_start_scene()
+
+func _on_play_pressed() -> void:
+    GameManager.show_level_select_scene()

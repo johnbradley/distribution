@@ -1,6 +1,6 @@
 extends Sprite2D
 
-const Direction = GameConstants.Direction
+const Direction = GridCell.Direction
 
 var location: Vector2i
 var selection_indicator:Sprite2D

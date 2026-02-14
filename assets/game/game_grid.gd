@@ -1,15 +1,16 @@
 extends Node2D
 
-const CellColor = GameConstants.CellColor
-const CellType = GameConstants.CellType
-const Direction = GameConstants.Direction
-const SinkType = GameConstants.SinkType
+const CellColor = GridCell.CellColor
+const CellType = GridCell.CellType
+const Direction = GridCell.Direction
+const SinkType = GridCell.SinkType
 
 const CORNER_CELL_SCENE: PackedScene = preload("res://assets/cells/corner_cell.tscn")
-const SPAWN_CELL_SCENE: PackedScene = preload("res://assets/cells/spawn_cell.tscn")
-const SINK_CELL_SCENE: PackedScene = preload("res://assets/cells/sink_cell.tscn")
+const EDGE_CELL_SCENE: PackedScene = preload("res://assets/cells/edge_cell.tscn")
 const CONVEYOR_CELL_SCENE: PackedScene = preload("res://assets/cells/conveyor_cell.tscn")
 @onready var level_scheduler: LevelScheduler = %LevelScheduler
+@onready var music: AudioStreamPlayer = %Music
+@export var music_volume_db: float = -10.0
 
 var background_rect : Rect2
 const background_color: Color = Color.BLACK
@@ -24,7 +25,10 @@ func _ready() -> void:
     background_rect = Rect2(0, 0, pixel_dimension, pixel_dimension)
 
     GridData.reset()
-    _add_cell_sprites()    
+    _add_cell_sprites()
+
+    music.volume_db = music_volume_db
+    music.play()
 
     var level_exists = level_scheduler.play_level(GameManager.current_level)
     if not level_exists:
@@ -37,11 +41,10 @@ func _add_cell_sprites() -> void:
         match cell.cell_type:
             CellType.CORNER:
                 child = CORNER_CELL_SCENE.instantiate()
-            CellType.SPAWN:
-                child = SPAWN_CELL_SCENE.instantiate()
-            CellType.SINK:
-                child = SINK_CELL_SCENE.instantiate()
-                child.rotation_degrees = cell.get_rotation_degrees()
+            CellType.SPAWN, CellType.SINK:
+                child = EDGE_CELL_SCENE.instantiate()
+                if cell.cell_type == CellType.SINK:
+                    child.rotation_degrees = cell.get_rotation_degrees()
             CellType.CONVEYOR:
                 child = CONVEYOR_CELL_SCENE.instantiate()
         child.position = cell.position

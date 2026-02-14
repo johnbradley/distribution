@@ -1,6 +1,6 @@
 class_name LevelScheduler extends Node
 
-const CellType = GameConstants.CellType
+const CellType = GridCell.CellType
 
 var tweens: Array[Tween] = []
 
@@ -40,6 +40,8 @@ func schedule_event(dict: Dictionary):
     tweens.append(tween)
 
 func process_event(dict: Dictionary) -> void:
+    if not GameManager.is_game_playing():
+        return
     var cell_index = LevelData.get_cell_index(dict)
     var color = LevelData.get_color(dict)
     match LevelData.get_cell_type(dict):

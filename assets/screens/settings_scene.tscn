@@ -1,0 +1,113 @@
+[gd_scene format=3 uid="uid://c14fnamf0n5od"]
+
+[ext_resource type="Script" uid="uid://dxppkfqqufk1v" path="res://assets/screens/settings_scene.gd" id="1_script"]
+[ext_resource type="FontFile" uid="uid://cvrpmoril3bre" path="res://assets/fonts/ZalandoSans-VariableFont_wdth,wght.ttf" id="2_font"]
+[ext_resource type="StyleBox" uid="uid://da10vlyohc2u7" path="res://assets/styles/btn_focus.tres" id="btn_focus"]
+[ext_resource type="StyleBox" uid="uid://bouvkqd7werkv" path="res://assets/styles/btn_hover.tres" id="btn_hover"]
+[ext_resource type="StyleBox" uid="uid://bera3hxn5o25q" path="res://assets/styles/btn_normal.tres" id="btn_normal"]
+[ext_resource type="StyleBox" uid="uid://ckeerbpanvse6" path="res://assets/styles/btn_pressed.tres" id="btn_pressed"]
+
+[sub_resource type="FontVariation" id="FontVariation_title"]
+base_font = ExtResource("2_font")
+variation_embolden = 1.0
+
+[node name="SettingsScene" type="PanelContainer" unique_id=1220887048]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1756585491]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1080455424]
+layout_mode = 2
+
+[node name="Spacer0" type="Control" parent="MarginContainer/VBoxContainer" unique_id=202397163]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer" unique_id=530709625]
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_title")
+theme_override_font_sizes/font_size = 78
+text = "Settings"
+horizontal_alignment = 1
+
+[node name="Spacer1" type="Control" parent="MarginContainer/VBoxContainer" unique_id=1643289251]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="SettingsContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=2139171723]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 20
+
+[node name="MusicToggle" type="CheckButton" parent="MarginContainer/VBoxContainer/SettingsContainer" unique_id=714170772]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+button_pressed = true
+text = "Music"
+
+[node name="SFXToggle" type="CheckButton" parent="MarginContainer/VBoxContainer/SettingsContainer" unique_id=146344647]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+button_pressed = true
+text = "Sound Effects"
+
+[node name="Spacer2" type="Control" parent="MarginContainer/VBoxContainer" unique_id=1777738440]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ResetData" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1076108937]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = ExtResource("btn_normal")
+theme_override_styles/pressed = ExtResource("btn_pressed")
+theme_override_styles/hover = ExtResource("btn_hover")
+theme_override_styles/focus = ExtResource("btn_focus")
+text = "Reset All Data"
+
+[node name="Spacer6" type="Control" parent="MarginContainer/VBoxContainer" unique_id=2116981572]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=432653509]
+layout_mode = 2
+
+[node name="Spacer3" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=573700645]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Back" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=2107694155]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = ExtResource("btn_normal")
+theme_override_styles/pressed = ExtResource("btn_pressed")
+theme_override_styles/hover = ExtResource("btn_hover")
+theme_override_styles/focus = ExtResource("btn_focus")
+text = "Back"
+
+[node name="Spacer4" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=732837954]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Spacer5" type="Control" parent="MarginContainer/VBoxContainer" unique_id=472733349]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[connection signal="toggled" from="MarginContainer/VBoxContainer/SettingsContainer/MusicToggle" to="." method="_on_music_toggled"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/SettingsContainer/SFXToggle" to="." method="_on_sfx_toggled"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ResetData" to="." method="_on_reset_data_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Back" to="." method="_on_back_pressed"]

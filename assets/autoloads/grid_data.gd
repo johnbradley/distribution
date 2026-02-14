@@ -1,9 +1,9 @@
 extends Node
 
-const CellType = GameConstants.CellType
-const Direction = GameConstants.Direction
-const CellColor = GameConstants.CellColor
-const SinkType = GameConstants.SinkType
+const CellType = GridCell.CellType
+const Direction = GridCell.Direction
+const CellColor = GridCell.CellColor
+const SinkType = GridCell.SinkType
 
 var cells: Dictionary[Vector2i, GridCell]
 

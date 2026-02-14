@@ -1,12 +1,12 @@
 extends Area2D
 
-const CellColor = GameConstants.CellColor
-const CellType = GameConstants.CellType
-const Direction = GameConstants.Direction
+const CellColor = GridCell.CellColor
+const CellType = GridCell.CellType
+const Direction = GridCell.Direction
 
-const BOX_BLUE_TEXTURE = GameConstants.BOX_BLUE_TEXTURE
-const BOX_RED_TEXTURE = GameConstants.BOX_RED_TEXTURE
-const BOX_YELLOW_TEXTURE = GameConstants.BOX_YELLOW_TEXTURE
+const BOX_BLUE_TEXTURE: Texture2D = preload("res://assets/sprites/box_blue.png")
+const BOX_RED_TEXTURE: Texture2D = preload("res://assets/sprites/box_red.png")
+const BOX_YELLOW_TEXTURE: Texture2D = preload("res://assets/sprites/box_yellow.png")
 const EXPLOSION_SCENE = preload("res://assets/game/explosion_particles.tscn")
 
 # value that should be set when creating this cell
@@ -21,6 +21,7 @@ var moving: bool = false
 var sprite: Sprite2D
 var tween
 var alive: bool = true
+var first_move: bool = true
 
 func _ready() -> void:
     GameManager.game_clock_running_changed.connect(game_clock_running_changed)
@@ -50,8 +51,10 @@ func get_box_texture() -> Texture2D:
     return null
 
 func start_move() -> void:
+    if first_move:
+        first_move = false
+        $SpawnSound.play()
     original_position = position
-    # target_position = GridData.get_position_from_location(target_location)
     moving = true
     t = 0.0
 
@@ -146,6 +149,7 @@ func move_to_next_target() -> void:
     if next_cell.cell_type == CellType.SINK:
         # Good destinations fly off the screen bad destinations blow up
         if next_cell.cell_color == box_color:
+            $SpawnSound.play()
             var final_location = determine_location(current_cell.direction, current_cell.location, 3)
             target_position = GridData.get_position_from_location(final_location)
         else:

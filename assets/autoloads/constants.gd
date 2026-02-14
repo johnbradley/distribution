@@ -1,10 +1,5 @@
 extends Node
 
-const CellType = GridCell.CellType
-const CellColor = GridCell.CellColor
-const Direction = GridCell.Direction
-const SinkType = GridCell.SinkType
-
 const GRID_SIZE: int = 7
 const CELL_SIZE: int = 128
 const CELL_OFFSET: int = 64 + 64 # Half cell size plus offset for box slides 
@@ -19,12 +14,3 @@ const CLOSE_ENOUGH_SQUARED: int = 100
 const FIRST_SPAWN_WAIT: float = 1.0
 const SUBSEQUENT_SPAWN_WAIT: float = 4.0
 const CLEANUP_WAIT: float = 2.0
-
-const ARROW_BLUE_TEXTURE: Texture2D = preload("res://assets/sprites/arrow_blue.png")
-const ARROW_RED_TEXTURE: Texture2D = preload("res://assets/sprites/arrow_red.png")
-const ARROW_YELLOW_TEXTURE: Texture2D = preload("res://assets/sprites/arrow_yellow.png")
-
-const BOX_BLUE_TEXTURE: Texture2D = preload("res://assets/sprites/box_blue.png")
-const BOX_RED_TEXTURE: Texture2D = preload("res://assets/sprites/box_red.png")
-const BOX_YELLOW_TEXTURE: Texture2D = preload("res://assets/sprites/box_yellow.png")
-
