@@ -4,7 +4,7 @@ var game_manager: Node
 
 
 func before_each() -> void:
-    game_manager = load("res://assets/game_manager.gd").new()
+    game_manager = load("res://assets/autoloads/game_manager.gd").new()
     add_child_autofree(game_manager)
 
 
@@ -27,12 +27,12 @@ func test_pause_game_emits_signals() -> void:
     watch_signals(game_manager)
     game_manager.pause_game()
     assert_signal_emitted(game_manager, "game_state_changed")
-    assert_signal_emitted(game_manager, "game_clock_state_changed")
+    assert_signal_emitted(game_manager, "game_clock_running_changed")
 
 
 func test_pause_emits_clock_false() -> void:
     var clock_value := []
-    game_manager.game_clock_state_changed.connect(func(running): clock_value.append(running))
+    game_manager.game_clock_running_changed.connect(func(running): clock_value.append(running))
     game_manager.pause_game()
     assert_eq(clock_value, [false])
 
@@ -59,13 +59,13 @@ func test_resume_game_emits_signals() -> void:
     watch_signals(game_manager)
     game_manager.resume_game()
     assert_signal_emitted(game_manager, "game_state_changed")
-    assert_signal_emitted(game_manager, "game_clock_state_changed")
+    assert_signal_emitted(game_manager, "game_clock_running_changed")
 
 
 func test_resume_emits_clock_true() -> void:
     game_manager.pause_game()
     var clock_value := []
-    game_manager.game_clock_state_changed.connect(func(running): clock_value.append(running))
+    game_manager.game_clock_running_changed.connect(func(running): clock_value.append(running))
     game_manager.resume_game()
     assert_eq(clock_value, [true])
 

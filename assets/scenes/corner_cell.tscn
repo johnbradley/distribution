@@ -1,8 +1,0 @@
-[gd_scene format=3 uid="uid://xd7bdle21ghp"]
-
-[ext_resource type="Texture2D" uid="uid://bj4lgvxmrpgep" path="res://assets/sprites/cornerbox.png" id="1_dc0r8"]
-[ext_resource type="Script" uid="uid://chw4nwlltmqno" path="res://assets/scenes/corner_cell.gd" id="2_dw72o"]
-
-[node name="CornerCell" type="Sprite2D" unique_id=190699142]
-texture = ExtResource("1_dc0r8")
-script = ExtResource("2_dw72o")

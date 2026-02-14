@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://daav7q5lw5luy"]
+
+[ext_resource type="Script" uid="uid://ca1pvylcklq24" path="res://assets/ui/level_panel.gd" id="1_l73m7"]
+
+[node name="LevelPanel" type="HBoxContainer" unique_id=1026787602]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -143.0
+offset_bottom = 73.0
+grow_horizontal = 0
+alignment = 2
+script = ExtResource("1_l73m7")
+
+[node name="Level" type="Label" parent="." unique_id=1226613425]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "1 "
