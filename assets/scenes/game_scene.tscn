@@ -7,8 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://daav7q5lw5luy" path="res://assets/scenes/level_panel.tscn" id="2_ve6l2"]
 [ext_resource type="PackedScene" uid="uid://ddos8l7ywjgcq" path="res://assets/scenes/success_scene.tscn" id="3_5t2cw"]
 [ext_resource type="PackedScene" uid="uid://bgs7j1b5oei7p" path="res://assets/scenes/failure_panel.tscn" id="4_aufxv"]
+[ext_resource type="Script" uid="uid://dxa6hf7uc6883" path="res://assets/scenes/game_scene.gd" id="game_scene_script"]
 
 [node name="GameScene" type="Node2D" unique_id=1913712761]
+script = ExtResource("game_scene_script")
 
 [node name="GameGrid" parent="." unique_id=501311505 instance=ExtResource("1_yot8c")]
 position = Vector2(140, 29)
