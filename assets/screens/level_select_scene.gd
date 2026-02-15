@@ -6,7 +6,7 @@ func _ready() -> void:
     for i in range(1, 8):
         var button: Button = get_node("%%%s" % ["Level%d" % i])
         button.pressed.connect(_on_level_pressed.bind(i))
-        button.disabled = false # i > GameManager.unlocked_level
+        button.disabled = i > GameManager.unlocked_level
         var level_data = LevelData.read_level_data(i)
         if level_data:
             var parts: Array[String] = ["Level %d" % i]
