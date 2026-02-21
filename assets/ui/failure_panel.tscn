@@ -20,10 +20,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -192.0
-offset_top = -156.0
-offset_right = 320.0
-offset_bottom = 228.0
+offset_left = -335.5
+offset_top = -192.0
+offset_right = 335.5
+offset_bottom = 192.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_vsjx5")
@@ -42,10 +42,20 @@ layout_mode = 2
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=347330026]
 layout_mode = 2
 size_flags_vertical = 6
-text = "You Failed!"
+text = "Lost"
 horizontal_alignment = 1
 
 [node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer" unique_id=2106007731]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Reason" type="Label" parent="MarginContainer/VBoxContainer" unique_id=404122184]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+horizontal_alignment = 1
+
+[node name="Spacer2" type="Control" parent="MarginContainer/VBoxContainer" unique_id=279079901]
 layout_mode = 2
 size_flags_vertical = 3
 
