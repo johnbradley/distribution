@@ -1,10 +1,13 @@
 extends Control
 
-@onready var downtime: Label = $Downtime
-@onready var delivered: Label = $Delivered
-@onready var lost: Label = $Lost
-@onready var pending: Label = $Pending
-@onready var total: Label = $Total
+@onready var downtimeLabel: Label = %DowntimeLabel
+@onready var downtime: Label = %Downtime
+@onready var downtime_animation_player: AnimationPlayer = %DowntimeAnimationPlayer
+@onready var lost_boxes_label: Label = %LostBoxesLabel
+@onready var lost_boxes_animation_player: AnimationPlayer = %LostBoxesAnimationPlayer
+
+const empty_char: String = " ◽"
+const x_char: String = " ❌"
 
 func _ready() -> void:
     GridData.downtime_remaining_changed.connect(_change_downtime)
@@ -12,11 +15,19 @@ func _ready() -> void:
     _change_downtime(GridData.downtime_remaining)
 
 func _change_downtime(remaining) -> void:
-    downtime.text = "%.1f" % remaining
+    if remaining < 10.0:
+        downtime_animation_player.play("danger")
+    downtime.text = "%.2f" % remaining
 
 func _on_box_counts_changed(delivered_boxes: int, lost_boxes: int, pending_boxes: int,
         total_boxes: int, max_boxes_lost: int):
-    delivered.text = str(delivered_boxes)
-    lost.text = "{0} / {1}".format([str(lost_boxes), str(max_boxes_lost)])
-    pending.text = str(pending_boxes)
-    total.text = str(total_boxes)
+    var new_text = ""
+    for i in range(max_boxes_lost):
+        if i < lost_boxes:
+            new_text += x_char 
+        else:
+            new_text += empty_char
+    lost_boxes_label.text = new_text
+    if lost_boxes >= max_boxes_lost:
+        lost_boxes_animation_player.play("danger")
+        

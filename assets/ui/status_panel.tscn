@@ -3,56 +3,179 @@
 [ext_resource type="Script" uid="uid://bmtn8g7xtmsk6" path="res://assets/ui/status_panel.gd" id="1_orurf"]
 [ext_resource type="FontFile" uid="uid://b82kqst0uelga" path="res://assets/fonts/RobotoMono-VariableFont_wght.ttf" id="2_l5nl5"]
 
-[node name="StatusPanel" type="GridContainer" unique_id=993052419]
-offset_right = 410.0
-offset_bottom = 304.0
-theme_override_constants/h_separation = 20
-columns = 2
+[sub_resource type="Animation" id="Animation_lm4ha"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer/MarginContainer/VBoxContainer/GridContainer/Downtime:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.2, 1, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MarginContainer/MarginContainer/VBoxContainer/GridContainer/DowntimeLabel:theme_override_colors/font_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.2, 1, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_aphmq"]
+resource_name = "bad"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer/MarginContainer/VBoxContainer/GridContainer/Downtime:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Color(0.93333334, 0.26666668, 0.26666668, 1), Color(0.93333334, 0.26666668, 0.26666668, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MarginContainer/MarginContainer/VBoxContainer/GridContainer/DowntimeLabel:theme_override_colors/font_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Color(0.93333334, 0.26666668, 0.26666668, 1), Color(0.93333334, 0.26666668, 0.26666668, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lm4ha"]
+_data = {
+&"RESET": SubResource("Animation_lm4ha"),
+&"danger": SubResource("Animation_aphmq")
+}
+
+[sub_resource type="Animation" id="Animation_txmd8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer/MarginContainer/VBoxContainer/LostBoxesLabel:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.2, 1, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_aiun0"]
+resource_name = "danger"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer/MarginContainer/VBoxContainer/LostBoxesLabel:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.95),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Color(0.2, 1, 0, 1), Color(0.2, 1, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_txmd8"]
+_data = {
+&"RESET": SubResource("Animation_txmd8"),
+&"danger": SubResource("Animation_aiun0")
+}
+
+[node name="StatusPanel" type="Control" unique_id=1631376464]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 833.0
+offset_bottom = 316.0
 script = ExtResource("1_orurf")
 
-[node name="DowntimeLabel" type="Label" parent="." unique_id=177776496]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1139726959]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -121.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.59717613, 0.59717613, 0.5971761, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1398689549]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -123.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer" unique_id=733566983]
 layout_mode = 2
+color = Color(0.050980393, 0.050980393, 0.050980393, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer" unique_id=445094583]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer" unique_id=1987102770]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/MarginContainer/VBoxContainer" unique_id=368823664]
+layout_mode = 2
+columns = 2
+
+[node name="DowntimeLabel" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=177776496]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.2, 1, 0, 1)
+theme_override_fonts/font = ExtResource("2_l5nl5")
 text = "Downtime:"
 
-[node name="Downtime" type="Label" parent="." unique_id=781922515]
+[node name="Downtime" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=781922515]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.2, 1, 0, 1)
 theme_override_fonts/font = ExtResource("2_l5nl5")
+theme_override_font_sizes/font_size = 60
 horizontal_alignment = 2
 
-[node name="DeliveredLabel" type="Label" parent="." unique_id=277608019]
+[node name="LostBoxesLabel" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer" unique_id=244790074]
+unique_name_in_owner = true
 layout_mode = 2
-text = "Delivered:"
-
-[node name="Delivered" type="Label" parent="." unique_id=1663392264]
-layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 1, 0, 1)
 theme_override_fonts/font = ExtResource("2_l5nl5")
-horizontal_alignment = 2
 
-[node name="LostLabel" type="Label" parent="." unique_id=1025791668]
-layout_mode = 2
-text = "Lost:"
+[node name="DowntimeAnimationPlayer" type="AnimationPlayer" parent="." unique_id=697367926]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_lm4ha")
 
-[node name="Lost" type="Label" parent="." unique_id=1395023701]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_l5nl5")
-horizontal_alignment = 2
-
-[node name="PendingLabel" type="Label" parent="." unique_id=2061210288]
-layout_mode = 2
-text = "Pending:"
-
-[node name="Pending" type="Label" parent="." unique_id=2055492723]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_l5nl5")
-horizontal_alignment = 2
-
-[node name="TotalLabel" type="Label" parent="." unique_id=939388650]
-layout_mode = 2
-text = "Total:"
-
-[node name="Total" type="Label" parent="." unique_id=1270609119]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_l5nl5")
-horizontal_alignment = 2
+[node name="LostBoxesAnimationPlayer" type="AnimationPlayer" parent="." unique_id=1782488372]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_txmd8")
