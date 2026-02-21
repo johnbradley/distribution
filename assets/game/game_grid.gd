@@ -54,8 +54,7 @@ func _add_cell_sprites() -> void:
 func _draw():
     draw_rect(background_rect, background_color)
     draw_rect(background_rect, background_border_color1, false, background_border_width1)
-    draw_rect(background_rect, background_border_color2, false, background_border_width2) 
-
+    draw_rect(background_rect, background_border_color2, false, background_border_width2)
 
 func _process(delta):
     GridData.tick_downtime(delta)

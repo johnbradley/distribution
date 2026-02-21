@@ -11,6 +11,7 @@ const EXPLOSION_SCENE = preload("res://assets/game/explosion_particles.tscn")
 
 # value that should be set when creating this cell
 # Specifies GridData cell location for our first stop
+var current_location: Vector2i
 var target_location: Vector2i
 var box_color: CellColor;
 
@@ -89,7 +90,6 @@ func _explode_box() -> void:
     explosion.position = position
     get_parent().add_child(explosion)
 
-
 func _move_toward_destination(delta: float) -> void:
     if t == 0.0: # The first movement should jump forward
         t = GameConstants.STARTING_TIME_JUMP
@@ -105,12 +105,15 @@ func is_close_enough_to_target():
 func finish_move() -> void:
     # This may jump a little (this is intenional)
     position = target_position
+    current_location = target_location
     moving = false
     # Find out where we are
     var current_cell = GridData.cells[target_location]
     if current_cell.cell_type == CellType.CONVEYOR:
         tween = get_tree().create_tween()
         tween.tween_interval(GameConstants.WAIT_BETWEEN_MOVES)
+        tween.tween_callback(broadcast_send_state)
+        tween.tween_interval(GameConstants.WAIT_AFTER_SEND_INDICATOR)
         tween.tween_callback(move_to_next_target)
     elif current_cell.cell_type == CellType.SINK:
         if current_cell.cell_color == box_color:
@@ -141,6 +144,9 @@ func determine_location(dir: Direction, loc: Vector2i, increment: int) -> Vector
         Direction.RIGHT:
             new_location[0] += increment
     return new_location
+
+func broadcast_send_state() -> void:
+    GridData.broadcast_send_state(current_location, GridCell.SendState.SEND)
 
 func move_to_next_target() -> void:
     var current_cell = GridData.cells[target_location]

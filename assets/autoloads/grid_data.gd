@@ -27,6 +27,7 @@ signal box_counts_changed(delivered: int, lost: int, pending: int, total_boxes: 
 signal conveyor_turned(grid_cell: GridCell)
 signal spawn_changed(grid_cell: GridCell)
 signal sink_changed(grid_cell: GridCell)
+signal send_state_changed(location: Vector2i, send_state: GridCell.SendState)
 
 func _ready() -> void:
     GameManager.game_state_changed.connect(_on_game_state_changed)
@@ -64,6 +65,10 @@ func tick_downtime(delta: float) -> void:
         downtime_remaining_changed.emit(downtime_remaining)
         if downtime_remaining <= 0.0:
             GameManager.game_lost()
+
+
+func broadcast_send_state(location: Vector2i, send_state: GridCell.SendState) -> void:
+    send_state_changed.emit(location, send_state)
 
 func set_selected_location(location:Vector2i):
     selected_location = location
