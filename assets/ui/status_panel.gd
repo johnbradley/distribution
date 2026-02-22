@@ -6,8 +6,8 @@ extends Control
 @onready var lost_boxes_label: Label = %LostBoxesLabel
 @onready var lost_boxes_animation_player: AnimationPlayer = %LostBoxesAnimationPlayer
 
-const empty_char: String = " ◽"
-const x_char: String = " ❌"
+const empty_char: String = " -"
+const x_char: String = " X"
 
 func _ready() -> void:
     GridData.downtime_remaining_changed.connect(_change_downtime)
